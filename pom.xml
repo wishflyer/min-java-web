@@ -3,21 +3,30 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>min-java-web</groupId>
   <artifactId>main</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>main Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-    <spring.version>4.2.2.RELEASE</spring.version>
+    <java.version>1.8</java.version>
 
+    <spring.version>4.2.6.RELEASE</spring.version>
+    <spring.boot.version>1.3.5.RELEASE</spring.boot.version>
 
     <slf4j.version>1.7.5</slf4j.version>
     <logback.version>1.0.11</logback.version>
     <freemarker.version>2.3.23</freemarker.version>
+    <jackson.version>2.6.0</jackson.version>
 
   </properties>
 
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.3.5.RELEASE</version>
+  </parent>
 
   <dependencies>
 
@@ -117,6 +126,17 @@
       <version>${spring.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
 
     <!--spring end-->
 
@@ -163,6 +183,11 @@
     <finalName>main</finalName>
     <plugins>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!--
+      <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
         <version>6.1.10</version>
@@ -170,7 +195,7 @@
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <webApp>${basedir}/target/base_app</webApp>
           <webAppConfig>
-            <contextPath>/</contextPath>  <!-- http://host:port/test/ -->
+            <contextPath>/</contextPath>  &lt;!&ndash; http://host:port/test/ &ndash;&gt;
           </webAppConfig>
           <connectors>
             <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
@@ -182,7 +207,8 @@
           <stopKey/>
           <stopPort/>
         </configuration>
-      </plugin>
+      </plugin>-->
+
     </plugins>
 
   </build>
