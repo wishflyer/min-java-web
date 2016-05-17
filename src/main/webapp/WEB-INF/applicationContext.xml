@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:jee="http://www.springframework.org/schema/jee"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+        <!-- 自动扫描的包名 -->
+    <context:component-scan base-package="cn" />
+
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven />
+
+
+    <!-- 将多个配置文件读取到容器中，交给Spring管理 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 这里支持多种寻址方式：classpath和file -->
+                <value>classpath:app.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 视图解释类 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true" />
+        <property name="prefix" value="/pages/" />
+        <property name="suffix" value=".jsp" />
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="requestContextAttribute" value="request" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+    </bean>
+
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/" />
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">10</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="number_format">0.##########</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--<mvc:view-controller path="/" view-name="redirect:/login" />-->
+    <context:annotation-config/>
+
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/pages/**" location="/pages/" cache-period="31556926" />
+    <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
+    <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
+    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/" cache-period="31556926"/>
+
+    <!-- 拦截器 -->
+    <!--<mvc:interceptors>
+      多个拦截器,顺序执行 -->
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/**" />&lt;!&ndash; 如果不配置或/*,将拦截所有的Controller &ndash;&gt;
+            <bean class="cn.dujb.interceptor.LoginInterceptor">
+                <property name="allowUrls">
+                    <list>
+                        &lt;!&ndash; 如果请求中包含以下文件路径，则不进行拦截 &ndash;&gt;
+                        <value>/login</value>
+                        <value>/js</value>
+                        <value>/react</value>
+                        <value>/css</value>
+                        <value>/images</value>
+                        <value>/fonts</value>
+                        <value>/file</value>
+						<value>/favicon.ico</value>
+                    </list>
+                </property>
+                <property name="mappingURL" value=".*login.*"/>
+				<property name="apiURL" value="api/"/>
+                <property name="redirectURL" value="/login"/>
+            </bean>
+        </mvc:interceptor>--><!--
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />&lt;!&ndash; 如果不配置或/*,将拦截所有的Controller &ndash;&gt;
+            <bean class="cn.dujb.interceptor.DispatcherInterceptor">
+                <property name="allowUrls">
+                    <list>
+                        &lt;!&ndash; 如果请求中包含以下文件路径，则不进行拦截 &ndash;&gt;
+                        <value>/js</value>
+                        <value>/react</value>
+                        <value>/css</value>
+                        <value>/images</value>
+                        <value>/fonts</value>
+                        <value>/file</value>
+                        <value>/favicon.ico</value>
+                    </list>
+                </property>
+                <property name="mappingURL" value="api/"/>
+
+                <property name="redirectURL" value="/pages/index.jsp"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+</beans>
