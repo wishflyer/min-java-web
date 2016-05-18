@@ -6,7 +6,7 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/applicationContext-springMVC.xml</param-value>
+      <param-value>/WEB-INF/applicationContext.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -14,27 +14,6 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-
-  <listener>
-      <listener-class>
-        org.springframework.web.context.ContextLoaderListener
-      </listener-class>
-  </listener>
-  <listener>
-      <listener-class>
-        org.springframework.web.context.request.RequestContextListener
-      </listener-class>
-  </listener>
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/applicationContext.xml</param-value>
-  </context-param>
-
-  <mime-mapping>
-    <extension>js</extension>
-    <mime-type>application/javascript</mime-type>
-  </mime-mapping>
-
 
   <!-- spring 字符编码过滤器START -->
   <filter>
