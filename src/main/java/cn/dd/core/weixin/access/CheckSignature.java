@@ -29,11 +29,11 @@ public class CheckSignature {
         System.out.println("echostr:"+echostr);
         String[] signatureArrays = new String[]{signature,timestamp,nonce};
         Arrays.sort(signatureArrays);
-        System.out.println("排序后："+signatureArrays);
+        System.out.println("排序后："+signatureArrays[0]+","+signatureArrays[1]+","+signatureArrays[2]);
         //拼接
         String str = signatureArrays[0]+signatureArrays[1]+signatureArrays[2];
         //进行SHA1加密
-        String mySignature = new String(DigestUtils.sha1(str));
+        String mySignature = new String(DigestUtils.sha1Hex(str));
 
         System.out.println("mySignature:"+mySignature);
         if(mySignature.equals(signature)){
