@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <!-- 不使用namespace的话sql搜索定位会比较方便 -->
-<mapper namespace="cn.dd.demo.myBatis.dao.TestDao">
+<mapper namespace="cn.dd.demo.myBatis.dao.Test">
 
 	<resultMap id="Test" type="cn.dd.demo.myBatis.entity.Test">
         <result property="id" column="id"/>

@@ -4,6 +4,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="cn.dd.demo.myBatis.entity.TestEntity" alias="TestEntity" />
+		<typeAlias type="cn.dd.demo.myBatis.entity.Test" alias="TestEntity" />
 	</typeAliases>
 </configuration>
