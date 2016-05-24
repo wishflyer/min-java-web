@@ -4,10 +4,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by czdujb on 2015/12/24.
@@ -28,14 +30,30 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
         return this.getSqlSession().selectOne(this.getFindByPrimaryKeyStatement(), id);
     }
 
+    public List<E> getByPage(Map param){
+        return this.getSqlSession().selectList(this.getByPageStatement(), param);
+    }
+
     public int deleteById(PK id) {
         int affectCount = this.getSqlSession().delete(this.getDeleteStatement(), id);
+        return affectCount;
+    }
+
+    public int deleteBatch(PK[] id) {
+        int affectCount = this.getSqlSession().delete(this.getDeleteBatchStatement(), id);
         return affectCount;
     }
 
     public int insert(E entity) {
         this.prepareObjectForSaveOrUpdate(entity);
         int affectCount = this.getSqlSession().insert(this.getInsertStatement(), entity);
+        return affectCount;
+    }
+
+
+    public int insertBatch(List<E> entityList){
+        this.prepareObjectListForSaveOrUpdate(entityList);
+        int affectCount = this.getSqlSession().insert(this.getInsertBatchStatement(), entityList);
         return affectCount;
     }
 
@@ -48,14 +66,24 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
     protected void prepareObjectForSaveOrUpdate(E o) {
     }
 
+
+    protected void prepareObjectListForSaveOrUpdate(List<E> o) {
+    }
+
     public abstract String getMybatisMapperNamesapce();
 
     public String getFindByPrimaryKeyStatement() {
         return this.getMybatisMapperNamesapce() + ".getById";
     }
 
+    public String getByPageStatement(){return this.getMybatisMapperNamesapce() + ".getByPage";}
+
     public String getInsertStatement() {
         return this.getMybatisMapperNamesapce() + ".insert";
+    }
+
+    public String getInsertBatchStatement() {
+        return this.getMybatisMapperNamesapce() + ".insertBatch";
     }
 
     public String getUpdateStatement() {
@@ -64,6 +92,10 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
 
     public String getDeleteStatement() {
         return this.getMybatisMapperNamesapce() + ".delete";
+    }
+
+    public String getDeleteBatchStatement() {
+        return this.getMybatisMapperNamesapce() + ".deleteBatch";
     }
 
     public void flush() {

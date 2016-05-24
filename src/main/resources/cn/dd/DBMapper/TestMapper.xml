@@ -25,8 +25,19 @@
                 AND msg = #{msg,jdbcType=VARCHAR}
             </if>
         </where>
-
      </sql>
+
+    <sql id="PageWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="msg != null and msg != ''">
+                AND msg = #{msg,jdbcType=VARCHAR}
+            </if>
+        </where>
+        limit <if test="ddPageParmStart != null and ddPageParmStart != ''">#{ddPageParmStart}</if>,<if test="ddPageParmSize != null and ddPageParmSize != ''">#{ddPageParmSize}</if>
+    </sql>
 
     <sql id="UpdateWhere">
         <where>
@@ -49,6 +60,15 @@
         ]]>
 	</insert>
 
+
+    <insert id="insertBatch" parameterType="list">
+        insert into test(id,msg)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.id,jdbcType=VARCHAR},#{item.msg,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
 	<update id="update" >
          UPDATE test
          <set>
@@ -66,6 +86,15 @@
         ]]>
     </delete>
 
+    <!-- 批量删除，只适用于该表只有1个主键的情况 -->
+    <delete id="deleteBatch">
+        DELETE FROM test WHERE
+        id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <select id="getById" resultMap="Test">
 		SELECT <include refid="BaseColumns" />
 	    <![CDATA[
@@ -74,6 +103,12 @@
 		        id = #{id} 
 	    ]]>
 	</select>
+
+    <select id="getByPage" resultMap="Test" parameterType="Map">
+        SELECT <include refid="BaseColumns" />
+        FROM test
+        <include refid="PageWhere" />
+    </select>
 
 </mapper>
 
