@@ -1,7 +1,9 @@
-package cn.dd.demo;
+package cn.dd.demo.rest;
 
 import cn.dd.core.rest.result.JsonRESTResult;
 import cn.dd.core.rest.result.RESTStatusCode;
+import cn.dd.demo.myBatis.dao.TestDao;
+import cn.dd.demo.myBatis.entity.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +15,16 @@ import javax.annotation.Resource;
 @RestController
 public class DemoServiceRestClient {
 
+    @Resource
+    private TestDao testDao;
 
+
+    @RequestMapping("/helloMyBatis")
+    public void helloMyBatis(){
+        System.out.println("helloMyBatis...");
+        Test test = testDao.getById("1");
+        System.out.println(test.getMsg());
+    }
 
     @RequestMapping("/helloRest")
     public String helloRest(){

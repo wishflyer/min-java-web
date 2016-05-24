@@ -1,4 +1,4 @@
-package cn.dd.demo;
+package cn.dd.demo.rest;
 
 import cn.dd.core.rest.result.JsonRESTResult;
 import cn.dd.core.rest.rpc.annotation.Param;

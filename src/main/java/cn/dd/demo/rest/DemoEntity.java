@@ -1,4 +1,4 @@
-package cn.dd.demo;
+package cn.dd.demo.rest;
 
 /**
  * Created by wishflyer on 2016/5/23.

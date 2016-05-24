@@ -15,12 +15,6 @@ xsi:schemaLocation="
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <!-- 自动扫描的包名 -->
-    <context:component-scan base-package="cn.dd" />
-
-    <!-- 默认的注解映射的支持 -->
-    <mvc:annotation-driven />
-
     <!-- 配置RPC调用服务器 -->
     <bean id="coreConfig" class="cn.dd.core.config.CoreConfig">
         <property name="APIServer" value="${api.server.url}"/>
@@ -135,5 +129,13 @@ xsi:schemaLocation="
 
 
     <import resource="classpath:rpc-config.xml"/>
+    <import resource="classpath:db-config.xml"/>
+
+
+    <!-- 自动扫描的包名 -->
+    <context:component-scan base-package="cn.dd" />
+
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven />
 
 </beans>

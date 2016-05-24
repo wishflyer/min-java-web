@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="cn.dd.demo.myBatis.dao.TestDao">
+
+	<resultMap id="Test" type="cn.dd.demo.myBatis.entity.Test">
+        <result property="id" column="id"/>
+        <result property="msg" column="msg"/>
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="BaseColumns">
+	    <![CDATA[
+            id,msg
+	    ]]>
+	</sql>
+
+    <sql id="BaseWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="msg != null and msg != ''">
+                AND msg = #{msg,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+     </sql>
+
+    <sql id="UpdateWhere">
+        <where>
+            <if test="msg != null and msg != ''">
+                AND msg = #{msg,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </sql>
+
+	<insert id="insert">
+        <![CDATA[
+            INSERT INTO test (
+                id ,
+                msg 
+            ) VALUES (
+                #{id,jdbcType=VARCHAR} ,
+                #{msg,jdbcType=VARCHAR} 
+            )
+        ]]>
+	</insert>
+
+	<update id="update" >
+         UPDATE test
+         <set>
+             <if test="msg != null">
+                  msg = #{msg,jdbcType=VARCHAR}
+              </if>
+        </set>
+        	<include  refid="UpdateWhere" />
+	</update>
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM test WHERE
+            id = #{id} 
+        ]]>
+    </delete>
+
+    <select id="getById" resultMap="Test">
+		SELECT <include refid="BaseColumns" />
+	    <![CDATA[
+		    FROM test 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+</mapper>
+
