@@ -30,6 +30,8 @@
     <mybatis.version>3.4.0</mybatis.version>
     <mybatis-spring.version>1.3.0</mybatis-spring.version>
 
+    <project.artifactId>main</project.artifactId>
+
   </properties>
 
 
@@ -291,6 +293,61 @@
           <stopKey/>
           <stopPort/>
         </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.4.19</version>
+        <configuration>
+          <container>
+            <!-- 标识使用是那一种容器。这个名字是不能随便定的，cargo有一组支持窗口的列表 -->
+            <containerId>tomcat8x</containerId>
+            <type>remote</type>
+          </container>
+          <configuration>
+            <type>runtime</type>
+            <properties>
+              <cargo.tomcat.manager.url>http://183.78.188.80:8088/manager</cargo.tomcat.manager.url>
+              <cargo.servlet.port>8088</cargo.servlet.port>
+              <cargo.hostname>183.78.188.80</cargo.hostname>
+              <cargo.tomcat.ajp.port>8009</cargo.tomcat.ajp.port>
+              <cargo.remote.username>tomcatUpdateRoleUser</cargo.remote.username>
+              <cargo.remote.password>dd+23ddd#Duidu34k</cargo.remote.password>
+            </properties>
+          </configuration>
+          <deployables>
+            <deployable>
+              <groupId>min-java-web</groupId>
+              <artifactId>main</artifactId>
+              <type>war</type>
+              <properties>
+                <context>/${project.artifactId}</context>
+              </properties>
+              <!-- 可选：验证是否部署成功 -->
+              <pingURL>http://183.78.188.80:8088/main</pingURL>
+              <!-- 可选：验证超时时间，默认是120000 毫秒-->
+              <pingTimeout>60000</pingTimeout>
+            </deployable>
+          </deployables>
+        </configuration>
+        <executions>
+          <execution>
+            <id>verify-deployer</id>
+            <phase>install</phase>
+            <goals>
+              <goal>deployer-redeploy</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>clean-deployer</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>deployer-undeploy</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
     </plugins>

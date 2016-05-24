@@ -134,6 +134,6 @@ xsi:schemaLocation="
     </mvc:interceptors>-->
 
 
-    <!--<import resource="classpath:rpc-config.xml"/>-->
+    <import resource="classpath:rpc-config.xml"/>
 
 </beans>

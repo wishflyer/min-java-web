@@ -27,7 +27,8 @@ public class CheckSignature {
         System.out.println("timestamp:"+timestamp);
         System.out.println("nonce:"+nonce);
         System.out.println("echostr:"+echostr);
-        String[] signatureArrays = new String[]{signature,timestamp,nonce};
+        String token = "UUDDLRLRABAB";
+        String[] signatureArrays = new String[]{token,timestamp,nonce};
         Arrays.sort(signatureArrays);
         System.out.println("排序后："+signatureArrays[0]+","+signatureArrays[1]+","+signatureArrays[2]);
         //拼接

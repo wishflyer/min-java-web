@@ -18,7 +18,7 @@ public class DemoServiceRestClient {
     @RequestMapping("/helloRest")
     public String helloRest(){
         System.out.println("helloRest...");
-        return "test";
+        return "testAAAABBBBB";
     }
 
 
