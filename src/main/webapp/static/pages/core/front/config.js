@@ -1,4 +1,4 @@
-console.log("example:loading pages/core/config.js start");
+console.log("example:loading pages/core/front/config.js start");
 
 window.dd = window.dd || {}
 //配置路由信息
@@ -11,4 +11,4 @@ window.dd.RouteConfig = {
 window.dd.debugMode = true;
 window.dd.vendorsPath = "static/vendors/";
 
-console.log("example:loading pages/core/config.js");
+console.log("example:loading pages/core/front/config.js");

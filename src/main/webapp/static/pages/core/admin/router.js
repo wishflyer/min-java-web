@@ -1,6 +1,6 @@
 ﻿Tools = components.tools;
 
-console.log("example:load example/router/core/router.js....")
+console.log("example:load example/router/core/admin/router.js....")
 if(window.location.pathname == "/login" || window.location.hash == '#/login'){
 	window.location.hash = "#/login";
     console.log("加载Login")
@@ -18,4 +18,4 @@ if(window.location.pathname == "/login" || window.location.hash == '#/login'){
 }
 
 //加载基本框架
-Tools.loadScript("static/pages/core/base.jsx",function(){window.dd.runScripts();});
+Tools.loadScript("static/pages/core/admin/base.jsx",function(){window.dd.runScripts();});
