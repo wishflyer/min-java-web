@@ -1,0 +1,21 @@
+/* 本例子css */
+.superSlide .slider{ width:100%;  min-width:980px;  height:335px;  position:relative; overflow:hidden; background:#fff; text-align:center;   }
+.superSlide .slider .bd{ width:980px; position:absolute; left:50%; margin-left:-490px  }
+.superSlide .slider .bd li{ width:980px;  overflow:hidden; }
+.superSlide .slider .bd li img{ display:block; width:980px; height:335px;    }
+.superSlide .slider .tempWrap{ overflow:visible !important }
+.superSlide .slider .tempWrap ul{  margin-left:-980px !important; /*强制位置*/  }
+
+.superSlide .slider .hd{ position:absolute; width:100%; left:0;  z-index:1; height:8px; bottom:20px;  text-align:center;  }
+.superSlide .slider .hd li{ display:inline-block; *display:inline; zoom:1; width:8px; height:8px; line-height:99px; overflow:hidden; 
+							background:url(/src/static/image/vendors/superSlider/slider-btn.png) 0 -10px no-repeat; 
+	margin:0 5px; cursor:pointer; filter:alpha(opacity=60);opacity:0.6;  }
+.superSlide .slider .hd li.on{ background-position:0 0; filter:alpha(opacity=100);opacity:1;  }
+.superSlide .slider .pnBtn{  position:absolute; z-index:1; top:0; width:100%;  height:335px; cursor:pointer;   }
+.superSlide .slider .prev{ left:-50%; margin-left:-490px;  }
+.superSlide .slider .next{ left:50%;  margin-left:490px;  }
+.superSlide .slider .pnBtn .blackBg{ display:block;  position:absolute; left:0; top:0; width:100%; height:335px; background:#000; filter:alpha(opacity=50);opacity:0.5;   }
+.superSlide .slider .pnBtn .arrow{ display:none;   position:absolute; top:0; z-index:1; width:60px; height:335px;  }
+.superSlide .slider .pnBtn .arrow:hover{ filter:alpha(opacity=60);opacity:0.6; }
+.superSlide .slider .prev .arrow{ right:0; background:url(/src/static/image/vendors/superSlider/slider-arrow.png) -120px 0 no-repeat;   }
+.superSlide .slider .next .arrow{ left:0; background:url(/src/static/image/vendors/superSlider/slider-arrow.png) 0 0 no-repeat;  }

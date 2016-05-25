@@ -1,0 +1,34 @@
+
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-submenu-active, 
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-item-active, 
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-submenu-selected, 
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-item-selected ,
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-submenu, 
+#header1 > .menu > .ant-menu-horizontal > .ant-menu-item {
+    border-bottom: 0px!important;
+}
+
+
+#header1 > .menu >  .ant-menu-horizontal>.ant-menu-submenu-active, 
+#header1 > .menu >  .ant-menu-horizontal>.ant-menu-item-active, 
+#header1 > .menu >  .ant-menu-horizontal>.ant-menu-submenu-selected, 
+#header1 > .menu >  .ant-menu-horizontal>.ant-menu-item-selected {
+    background-color: rgba(124, 99, 99, 0)!important;
+    /* background-color: blue!important; */
+}
+
+#header1 > .menu >.ant-menu > .ant-menu-submenu-horizontal >.ant-menu {
+	margin-top:13px!important;
+}
+ 
+#header1 > .menu{
+	float:right;
+}
+
+#header1 > .menu >.ant-menu {
+	background: none;
+}
+
+#header1 .loginButton{
+	margin-top: 6px;
+}

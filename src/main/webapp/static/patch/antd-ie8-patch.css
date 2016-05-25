@@ -1,0 +1,21 @@
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow{
+	top:0px!important;
+	left:16px!important;
+}
+
+.ant-btn:after{
+	content:""
+}
+
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner:after{
+	border:0px solid #fff;
+}
+
+#header1{
+	height: 80px;
+}
+
+#header1 > .menu{
+    right: 100px;
+    position: absolute;
+}

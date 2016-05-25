@@ -1,0 +1,23 @@
+/* 本例子css */
+.superSlide .game163{ position: relative; border: 1px solid #dcdddd; padding: 4px; overflow: hidden; width: 300px; }
+.superSlide .game163 .bigImg{ height: 258px; position: relative;}
+.superSlide .game163 .bigImg li img{ vertical-align:middle; width:300px; height:225px;   }
+.superSlide .game163 .bigImg  h4{ padding-left:5px;font-size: 14px; font-weight: bold; line-height: 33px; height: 33px; padding-right: 30px; overflow: hidden; text-align: left; }
+
+.superSlide .game163 .smallScroll{ height: 47px; margin-bottom: 6px; margin-top:4px;}
+.superSlide .game163 .sPrev,.superSlide .game163 .sNext{ float: left; display: block; width: 14px; height: 47px; text-indent: -9999px; background: url(/src/static/image/vendors/superSlider/sprites1008.png) no-repeat 0 -3046px; }
+.superSlide .game163 .sNext{ background-position: 0 -2698px;}
+.superSlide .game163 .sPrev:hover{ background-position: 0 -3133px;}
+.superSlide .game163 .sNext:hover{ background-position: 0 -2785px;}
+
+.superSlide .game163 .smallImg{ float:left;  padding-left:7px; display:inline; width: 260px; overflow: hidden;}
+.superSlide .game163 .smallImg ul{ height:54px;  width: 9999px; overflow: hidden; }
+.superSlide .game163 .smallImg li{ float: left; padding:0; width:62px!important; cursor:pointer;  display: inline;  }
+.superSlide .game163 .smallImg img{ border: 1px solid #dcdddd; width:60px; height:45px;  }
+.superSlide .game163 .smallImg .on img{ border-color: #1e50a2;}
+
+.superSlide .game163 .pageState{ position: absolute; top: 235px; right: 5px; font-family: "Times New Roman", serif; letter-spacing: 1px;}
+.superSlide .game163 .pageState span{ color: #f00; font-size: 16px;}
+
+
+

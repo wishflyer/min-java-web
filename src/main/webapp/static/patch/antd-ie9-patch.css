@@ -1,0 +1,9 @@
+
+#header1{
+	height: 80px;
+}
+
+#header1 > .menu{
+    right: 100px;
+    position: absolute;
+}

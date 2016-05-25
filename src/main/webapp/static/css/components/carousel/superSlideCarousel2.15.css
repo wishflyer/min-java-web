@@ -1,0 +1,17 @@
+
+/* 本例子css */
+.superSlide .focusBox { position: relative; width:100%; height:450px; overflow: hidden; }
+.superSlide .focusBox .pic{ position:relative; z-index:0; }
+.superSlide .focusBox .pic img { width:100%; height:450px; display: block; }
+.superSlide .focusBox .hd { width:100%; position: absolute; bottom: 10px; text-align: center; font-size:0; z-index:1; }
+.superSlide .focusBox .hd li{margin: 0 5px; background: url(/src/static/image/vendors/superSlider/dot.png) no-repeat 0 -16px; height: 16px; overflow: hidden; width: 16px; cursor: pointer;
+	display:inline-block; *display:inline; zoom:1;  _background: url(/src/static/image/vendors/superSlider/dot8.png) no-repeat 0 -16px;
+}
+.superSlide .focusBox .hd .on{ background-position:0 0; }
+
+.superSlide .focusBox .prev,
+.superSlide .focusBox .next { width: 60px; height: 90px; margin: -60px 0 0; display: none; background: url(/src/static/image/vendors/superSlider/ad_ctr.png) no-repeat 0 0; position: absolute; top: 50%; z-index: 10; cursor: pointer; text-indent: -9999px; filter:alpha(opacity=20);opacity:0.2;  }
+.superSlide .focusBox .prev { left: 0; }
+.superSlide .focusBox .next { background-position: 0 -90px; right: 0; }
+.superSlide .focusBox .prev:hover,
+.superSlide .focusBox .next:hover { filter:alpha(opacity=50) !important;opacity:0.5 !important;  }

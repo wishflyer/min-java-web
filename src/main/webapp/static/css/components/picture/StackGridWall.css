@@ -1,0 +1,11 @@
+#satckGridWall-grid-container {
+  position: relative;
+}
+
+.satckGridWall-grid-item {
+  position: absolute;
+}
+
+.satckGridWall-grid-item img {
+  width: 100%;
+}

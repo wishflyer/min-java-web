@@ -1,0 +1,17 @@
+
+
+/* 本例子css */
+.superSlide .fullSlide{ width:100%;  position:relative;  height:460px; background:#000;  }
+.superSlide .fullSlide .bd{ margin:0 auto; position:relative; z-index:0; overflow:hidden;  }
+.superSlide .fullSlide .bd ul{ width:100% !important;  }
+.superSlide .fullSlide .bd li{ width:100% !important;  height:460px; overflow:hidden; text-align:center;  }
+.superSlide .fullSlide .bd li a{ display:block; height:460px; }
+
+.superSlide .fullSlide .hd{ width:100%;  position:absolute; z-index:1; bottom:0; left:0; height:30px; line-height:30px; background:url(/src/static/image/vendors/superSlider/touming.png) repeat-x; text-align:center;
+	 _background:#000; _filter:alpha(opacity=60); 
+}
+.superSlide .fullSlide .hd ul{ text-align:center;  padding-top:5px;  }
+.superSlide .fullSlide .hd ul li{ cursor:pointer; display:inline-block; *display:inline; zoom:1; width:8px; height:8px; margin:5px; background:url(/src/static/image/vendors/superSlider/tg_flash_p.png) -18px 0; overflow:hidden; 
+	line-height:9999px; 
+}
+.superSlide .fullSlide .hd ul .on{ background-position:0 0; }
