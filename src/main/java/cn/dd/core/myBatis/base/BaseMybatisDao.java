@@ -50,7 +50,6 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
         return affectCount;
     }
 
-
     public int insertBatch(List<E> entityList){
         this.prepareObjectListForSaveOrUpdate(entityList);
         int affectCount = this.getSqlSession().insert(this.getInsertBatchStatement(), entityList);
@@ -60,6 +59,25 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
     public int update(E entity) {
         this.prepareObjectForSaveOrUpdate(entity);
         int affectCount = this.getSqlSession().update(this.getUpdateStatement(), entity);
+        return affectCount;
+    }
+
+    public int setValid(E entity) {
+        this.prepareObjectForSaveOrUpdate(entity);
+        int affectCount = this.getSqlSession().update(this.getSetValidStatement(), entity);
+        return affectCount;
+    }
+    public int setValidBatch(PK[] id) {
+        int affectCount = this.getSqlSession().update(this.getSetValidBatchStatement(), id);
+        return affectCount;
+    }
+    public int setInvalid(E entity) {
+        this.prepareObjectForSaveOrUpdate(entity);
+        int affectCount = this.getSqlSession().update(this.getSetInvalidStatement(), entity);
+        return affectCount;
+    }
+    public int setInvalidBatch(PK[] id) {
+        int affectCount = this.getSqlSession().update(this.getSetInvalidBatchStatement(), id);
         return affectCount;
     }
 
@@ -96,6 +114,22 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
 
     public String getDeleteBatchStatement() {
         return this.getMybatisMapperNamesapce() + ".deleteBatch";
+    }
+
+    public String getSetValidStatement() {
+        return this.getMybatisMapperNamesapce() + ".setValid";
+    }
+
+    public String getSetValidBatchStatement() {
+        return this.getMybatisMapperNamesapce() + ".setValidBatch";
+    }
+
+    public String getSetInvalidStatement() {
+        return this.getMybatisMapperNamesapce() + ".setInvalid";
+    }
+
+    public String getSetInvalidBatchStatement() {
+        return this.getMybatisMapperNamesapce() + ".setInvalidBatch";
     }
 
     public void flush() {

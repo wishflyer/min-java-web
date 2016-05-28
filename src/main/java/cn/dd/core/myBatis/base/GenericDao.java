@@ -22,6 +22,15 @@ public interface GenericDao<E, PK extends Serializable> {
 
     int update(E entity) throws DataAccessException;
 
+    //置有效
+    int setValid(E entity) throws DataAccessException;
+    //批量置有效
+    int setValidBatch(PK[] ids) throws DataAccessException;
+    //置无效
+    int setInvalid(E entity) throws DataAccessException;
+    //批量置无效
+    int setInvalidBatch(PK[] ids) throws DataAccessException;
+
     //批量删除
     int deleteBatch(PK[] ids) throws DataAccessException;
 

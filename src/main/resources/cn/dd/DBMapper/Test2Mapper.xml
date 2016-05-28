@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="cn.dd.demo.myBatis.dao.Test2">
+
+	<resultMap id="Test2" type="cn.dd.demo.myBatis.entity.Test2">
+        <result property="id" column="id"/>
+        <result property="msg" column="msg"/>
+        <result property="status" column="status"/>
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="BaseColumns">
+	    <![CDATA[
+            id,msg,status
+	    ]]>
+	</sql>
+
+    <sql id="BaseWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="msg != null and msg != ''">
+                AND msg = #{msg,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+     </sql>
+
+    <sql id="PageWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="msg != null and msg != ''">
+                AND msg = #{msg,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+        limit <if test="ddPageParmStart != null and ddPageParmStart != ''">#{ddPageParmStart}</if>,<if test="ddPageParmSize != null and ddPageParmSize != ''">#{ddPageParmSize}</if>
+    </sql>
+
+	<insert id="insert">
+        <![CDATA[
+            INSERT INTO test2 (
+                id ,
+                msg ,
+                status 
+            ) VALUES (
+                #{id,jdbcType=VARCHAR} ,
+                #{msg,jdbcType=VARCHAR} ,
+                #{status,jdbcType=INTEGER} 
+            )
+        ]]>
+	</insert>
+
+
+    <insert id="insertBatch" parameterType="list">
+        insert into test2(id,msg,status)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.id,jdbcType=VARCHAR},#{item.msg,jdbcType=VARCHAR},#{item.status,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
+	<update id="update" >
+         UPDATE test2
+         <set>
+             <if test="msg != null">
+                  msg = #{msg,jdbcType=VARCHAR},
+              </if>
+             <if test="status != null">
+                  status = #{status,jdbcType=INTEGER}
+              </if>
+        </set>
+        <include  refid="BaseWhere" />
+	</update>
+
+    <update id="setInvalid">
+        UPDATE test2
+        <set>
+            status = 9999
+        </set>
+        <include  refid="BaseWhere" />
+    </update>
+
+    <!-- 批量置无效，只适用于该表只有1个主键的情况 -->
+    <update id="setInvalidBatch">
+        UPDATE test2
+        <set>
+            status = 9999
+        </set>
+        WHERE id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="setValid">
+        UPDATE test2
+        <set>
+            status = 0
+        </set>
+        <include  refid="BaseWhere" />
+    </update>
+
+    <!-- 批量置有效，只适用于该表只有1个主键的情况 -->
+    <update id="setValidBatch">
+        UPDATE test2
+        <set>
+            status = 0
+        </set>
+        WHERE id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM test2 WHERE
+            id = #{id} 
+        ]]>
+    </delete>
+
+    <!-- 批量删除，只适用于该表只有1个主键的情况 -->
+    <delete id="deleteBatch">
+        DELETE FROM test2 WHERE
+        id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getById" resultMap="Test2">
+		SELECT <include refid="BaseColumns" />
+	    <![CDATA[
+		    FROM test2 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+    <select id="getByPage" resultMap="Test2" parameterType="Map">
+        SELECT <include refid="BaseColumns" />
+        FROM test2
+        <include refid="PageWhere" />
+    </select>
+
+</mapper>
+

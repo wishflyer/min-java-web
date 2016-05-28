@@ -48,6 +48,12 @@ public class RequestExecutor {
     //要调用的URL
     private String requestUrl;
 
+    //是否使用useAPIServer
+    private boolean useAPIServer;
+
+    //是否使用url传参数,这个参数只有在GET的时候才效
+    private boolean useURLTransferParam;
+
     @Autowired
     private CoreConfig coreConfig;
 
@@ -64,6 +70,14 @@ public class RequestExecutor {
         this.requestUrl = requestUrl;
     }
 
+    public void setUseAPIServer(boolean useAPIServer) {
+        this.useAPIServer = useAPIServer;
+    }
+
+    public void setUseURLTransferParam(boolean useURLTransferParam) {
+        this.useURLTransferParam = useURLTransferParam;
+    }
+
     //执行操作
     public Object execute(Object[] args) throws IOException {
 
@@ -74,13 +88,21 @@ public class RequestExecutor {
         Map<String, String> header = headerValues.get();
         Map<String, String> body = bodyValues.get();
 
+
+        String finalRequestUrl;
+        if(useAPIServer){
+            finalRequestUrl = coreConfig.getAPIServer() + requestUrl;
+        }else{
+            finalRequestUrl = requestUrl;
+        }
+
         //根据调用类型（get/post)进行调用
         if (httpMethod.equals(HttpMethod.GET)) {
             RestGetClient client = new RestGetClient();
-            response = client.callRestRPC(coreConfig.getAPIServer() + requestUrl, header);
+            response = client.callRestRPC(finalRequestUrl, header,useURLTransferParam);
         } else if (httpMethod.equals(HttpMethod.POST)) {
             RestPostClient client = new RestPostClient();
-            response = client.callRestRPC(coreConfig.getAPIServer() + requestUrl, header, body);
+            response = client.callRestRPC(finalRequestUrl, header, body);
         }
 
         headerValues.set(null);

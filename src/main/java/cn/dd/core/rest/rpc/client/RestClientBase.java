@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -37,6 +38,35 @@ public abstract class RestClientBase {
             uri = this.getBaseHost() + requestURI;
         } else {
             uri = requestURI;
+        }
+        requestBase.setURI(new URI(uri));
+    }
+
+
+    protected void setURI(HttpRequestBase requestBase, String requestURI, Map<String, String> headerParam) throws URISyntaxException {
+        String uri;
+        String key;
+        //组装param
+        StringBuilder paramsBuilder = new StringBuilder();
+        Iterator<String> iterator = headerParam.keySet().iterator();
+        int i = 0;
+        while(iterator.hasNext()){
+            if(i++ > 0) paramsBuilder.append("&");
+            key = iterator.next();
+            paramsBuilder.append(key+"="+headerParam.get(key));
+        }
+        if (this.getBaseHost() != null) {
+            if(paramsBuilder.length() > 0){
+                uri = this.getBaseHost() + requestURI+"?"+paramsBuilder.toString();
+            }else{
+                uri = this.getBaseHost() + requestURI;
+            }
+        } else {
+            if(paramsBuilder.length() > 0){
+                uri = requestURI+"?"+paramsBuilder.toString();
+            }else{
+                uri = requestURI;
+            }
         }
         requestBase.setURI(new URI(uri));
     }

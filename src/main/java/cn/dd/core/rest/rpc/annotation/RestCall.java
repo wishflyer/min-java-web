@@ -14,4 +14,9 @@ import java.lang.annotation.Target;
 public @interface RestCall {
     String URL();
     HttpMethod RequestType() default HttpMethod.POST;
+    //是否使用nignx服务器
+    boolean UseAPIServer() default true;
+    //是否使用url传参数,这个参数只有在GET的时候才效
+    boolean UseURLTransferParam() default false;
+
 }

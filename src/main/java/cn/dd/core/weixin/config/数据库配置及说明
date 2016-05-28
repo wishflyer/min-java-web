@@ -1,0 +1,5 @@
+//使用时记得把数据库的配置文件放到对应的目录下
+
+//weixin_access_token表
+create table weixin_access_token(id varchar(20),access_token varchar(1024),expires_in int,update_date TIMESTAMP,PRIMARY KEY(id));
+insert into weixin_access_token(id,access_token) values('weixinAccessToken','-1');

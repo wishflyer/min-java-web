@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="cn.dd.core.weixin.rest.dao.WeixinAccessToken">
+
+	<resultMap id="WeixinAccessToken" type="cn.dd.core.weixin.rest.entity.WeixinAccessToken">
+        <result property="id" column="id"/>
+        <result property="accessToken" column="access_token"/>
+        <result property="expiresIn" column="expires_in"/>
+        <result property="updateDate" column="update_date"/>
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="BaseColumns">
+	    <![CDATA[
+            id,access_token,expires_in,update_date
+	    ]]>
+	</sql>
+
+    <sql id="BaseWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="accessToken != null and accessToken != ''">
+                AND access_token = #{accessToken,jdbcType=VARCHAR}
+            </if>
+            <if test="expiresIn != null and expiresIn != ''">
+                AND expires_in = #{expiresIn,jdbcType=INTEGER}
+            </if>
+            <if test="updateDate != null and updateDate != ''">
+                AND update_date = #{updateDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+     </sql>
+
+    <sql id="PageWhere">
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="accessToken != null and accessToken != ''">
+                AND access_token = #{accessToken,jdbcType=VARCHAR}
+            </if>
+            <if test="expiresIn != null and expiresIn != ''">
+                AND expires_in = #{expiresIn,jdbcType=INTEGER}
+            </if>
+            <if test="updateDate != null and updateDate != ''">
+                AND update_date = #{updateDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        limit <if test="ddPageParmStart != null and ddPageParmStart != ''">#{ddPageParmStart}</if>,<if test="ddPageParmSize != null and ddPageParmSize != ''">#{ddPageParmSize}</if>
+    </sql>
+
+	<insert id="insert">
+        <![CDATA[
+            INSERT INTO weixin_access_token (
+                id ,
+                access_token ,
+                expires_in ,
+                update_date 
+            ) VALUES (
+                #{id,jdbcType=VARCHAR} ,
+                #{accessToken,jdbcType=VARCHAR} ,
+                #{expiresIn,jdbcType=INTEGER} ,
+                #{updateDate,jdbcType=TIMESTAMP} 
+            )
+        ]]>
+	</insert>
+
+
+    <insert id="insertBatch" parameterType="list">
+        insert into weixin_access_token(id,access_token,expires_in,update_date)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.id,jdbcType=VARCHAR},#{item.accessToken,jdbcType=VARCHAR},#{item.expiresIn,jdbcType=INTEGER},#{item.updateDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+	<update id="update" >
+         UPDATE weixin_access_token
+         <set>
+             <if test="accessToken != null">
+                  access_token = #{accessToken,jdbcType=VARCHAR},
+              </if>
+             <if test="expiresIn != null">
+                  expires_in = #{expiresIn,jdbcType=INTEGER},
+              </if>
+             <if test="updateDate != null">
+                  update_date = #{updateDate,jdbcType=TIMESTAMP}
+              </if>
+        </set>
+        WHERE
+        id = #{id} 
+    </update>
+
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM weixin_access_token WHERE
+            id = #{id} 
+        ]]>
+    </delete>
+
+    <!-- 批量删除，只适用于该表只有1个主键的情况 -->
+    <delete id="deleteBatch">
+        DELETE FROM weixin_access_token WHERE
+        id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getById" resultMap="WeixinAccessToken">
+		SELECT <include refid="BaseColumns" />
+	    <![CDATA[
+		    FROM weixin_access_token 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+    <select id="getByPage" resultMap="WeixinAccessToken" parameterType="Map">
+        SELECT <include refid="BaseColumns" />
+        FROM weixin_access_token
+        <include refid="PageWhere" />
+    </select>
+
+</mapper>
+

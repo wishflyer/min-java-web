@@ -14,13 +14,15 @@ public class RestGetClient extends RestClientBase {
 
     private static final Logger logger = LoggerFactory.getLogger(RestGetClient.class);
 
-    public String callRestRPC(String requestURI, Map<String, String> headerParam) {
+    public String callRestRPC(String requestURI, Map<String, String> headerParam,boolean useURLTransferParam) {
         try {
             HttpGet httpGet = new HttpGet();
-            setURI(httpGet, requestURI);
-
-            initHttpHeader(httpGet, headerParam);
-
+            if(useURLTransferParam){
+                setURI(httpGet, requestURI,headerParam);
+            }else{
+                setURI(httpGet, requestURI);
+                initHttpHeader(httpGet, headerParam);
+            }
             return getResponse(httpGet);
         } catch (URISyntaxException e) {
             e.printStackTrace();

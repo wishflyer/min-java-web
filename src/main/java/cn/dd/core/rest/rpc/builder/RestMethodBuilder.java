@@ -22,6 +22,8 @@ public class RestMethodBuilder<T> implements FactoryBean<T>, ApplicationContextA
     private Class<?> returnType;
     //private Class<?> restResponseType;
     private String requestUrl;
+    private boolean useAPIServer;
+    private boolean useURLTransferParam;
 
     private Class<?> ExecutorClass = RequestExecutor.class;
 
@@ -33,6 +35,8 @@ public class RestMethodBuilder<T> implements FactoryBean<T>, ApplicationContextA
         returnType = targetMethod.getReturnType();
         //restResponseType = annotate.ResponseType();
         requestUrl = annotate.URL();
+        useAPIServer = annotate.UseAPIServer();
+        useURLTransferParam = annotate.UseURLTransferParam();
     }
 
     @Override
@@ -47,6 +51,8 @@ public class RestMethodBuilder<T> implements FactoryBean<T>, ApplicationContextA
         requestExecutor.setReturnType(returnType);
         requestExecutor.setRequestUrl(requestUrl);
         requestExecutor.setHttpMethod(requestType);
+        requestExecutor.setUseAPIServer(useAPIServer);
+        requestExecutor.setUseURLTransferParam(useURLTransferParam);
         return (T) requestExecutor;
     }
 
