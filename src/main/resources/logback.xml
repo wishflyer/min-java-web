@@ -75,7 +75,7 @@
         </encoder>
     </appender>
     <encoder charset="UTF-8" />
-    <logger name="cn.ctyun" level="DEBUG" />
+    <logger name="cn.dd" level="DEBUG" />
 
     <logger name="jdbc.connection" level="ERROR"/>
     <logger name="jdbc.audit" level="ERROR"/>

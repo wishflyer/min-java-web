@@ -4,6 +4,7 @@ import cn.dd.core.myBatis.base.PageParam;
 import cn.dd.core.rest.result.JsonRESTResult;
 import cn.dd.core.rest.result.RESTStatusCode;
 import cn.dd.core.utils.UUIDUtils;
+import cn.dd.core.weixin.rest.service.WeixinAccessTokenService;
 import cn.dd.demo.myBatis.dao.Test2Dao;
 import cn.dd.demo.myBatis.dao.TestDao;
 import cn.dd.demo.myBatis.entity.Test;
@@ -29,7 +30,16 @@ public class DemoServiceRestClient {
     @Resource
     private Test2Dao test2Dao;
 
-    @RequestMapping("/helloMyBatis")
+    @Resource
+    private WeixinAccessTokenService weixinAccessTokenService;
+
+    @RequestMapping("/getRealIP")
+    public void getRealIP() {
+        ArrayList<String> s = weixinAccessTokenService.getRealIP();
+        System.out.println(s);
+    }
+
+        @RequestMapping("/helloMyBatis")
     public void helloMyBatis(){
 
         System.out.println("-----start-----");
