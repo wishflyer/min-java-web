@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/task
+                          http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--cron表达式：* * * * * *（共6位，使用空格隔开，具体如下）-->
+    <!--cron表达式：*(秒0-59) *(分钟0-59) *(小时0-23) *(日期1-31) *(月份1-12或是JAN-DEC) *(星期1-7或是SUN-SAT)-->
+
+    <!--<task:scheduled-tasks>-->
+
+        <!--<task:scheduled ref="demoServiceRestClient" method="helloMyBatis3" cron="0/5 * * * * ?"></task:scheduled>-->
+
+    <!--</task:scheduled-tasks>-->
+
+</beans>

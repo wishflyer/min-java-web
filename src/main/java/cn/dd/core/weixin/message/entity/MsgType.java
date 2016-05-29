@@ -13,4 +13,6 @@ public class MsgType {
     public final static String LOCATION = "location";
     public final static String LINK = "link";
 
+    public final static String EVENT = "event";
+
 }

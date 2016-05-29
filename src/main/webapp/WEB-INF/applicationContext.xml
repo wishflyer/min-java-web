@@ -130,6 +130,7 @@ xsi:schemaLocation="
 
     <import resource="classpath:rpc-config.xml"/>
     <import resource="classpath:db-config.xml"/>
+    <import resource="classpath:spring-task.xml"/>
 
 
     <!-- 自动扫描的包名 -->

@@ -26,7 +26,6 @@ public class DemoServiceRestClient {
     @Resource
     private TestDao testDao;
 
-
     @Resource
     private Test2Dao test2Dao;
 
