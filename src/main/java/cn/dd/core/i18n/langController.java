@@ -37,6 +37,7 @@ public class langController {
             cookieLocaleResolver.setLocale(request, response, LocaleContextHolder.getLocale());
             //request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, LocaleContextHolder.getLocale());
         }
-        return "redirect:/hello";
+        //返回主页
+        return "redirect:/";
     }
 }
