@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<%@ page contentType="text/html;charset=utf-8" %>
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <title>Page Not Found</title>
@@ -53,8 +54,8 @@
     </style>
 </head>
 <body>
-    <h1>Page Not Found</h1>
-    <p>Sorry, but the page you were trying to view does not exist.</p>
+    <h1>您访问的页面没找到！</h1>
+    <h2>Page Not Found</h2>
 </body>
 </html>
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->

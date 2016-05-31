@@ -37,7 +37,7 @@ xsi:schemaLocation="
 
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/static/pages/**" location="/static/pages/" cache-period="31556926" />
-    <mvc:resources mapping="/static/images/**" location="/static/images/" cache-period="31556926"/>
+    <mvc:resources mapping="/static/images/**" location="/static/image/" cache-period="31556926"/>
     <mvc:resources mapping="/static/css/**" location="/static/css/" cache-period="31556926"/>
     <mvc:resources mapping="/static/js/**" location="/static/js/" cache-period="31556926"/>
     <mvc:resources mapping="/static/fonts/**" location="/static/fonts/" cache-period="31556926"/>
