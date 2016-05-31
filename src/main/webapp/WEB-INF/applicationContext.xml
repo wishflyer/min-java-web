@@ -131,9 +131,12 @@ xsi:schemaLocation="
     <import resource="classpath:rpc-config.xml"/>
     <import resource="classpath:db-config.xml"/>
     <import resource="classpath:spring-task.xml"/>
+    <import resource="classpath:spring-i18n.xml"/>
 
 
-    <!-- 自动扫描的包名 -->
+
+
+            <!-- 自动扫描的包名 -->
     <context:component-scan base-package="cn.dd" />
 
     <!-- 默认的注解映射的支持 -->

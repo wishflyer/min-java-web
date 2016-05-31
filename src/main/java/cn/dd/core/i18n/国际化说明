@@ -1,0 +1,12 @@
+如果需要动态切换，可用ajax
+<script>
+    function changeLang(lang){
+        $.post("${basePath}/i18n?lang="+lang,function(data,status){
+	        location.reload();
+	    });
+    }
+</script>
+
+切换语言用
+${basePath}/i18n?lang=zh
+${basePath}/i18n?lang=en

@@ -26,6 +26,13 @@ public class DemoService {
     }
 
 
+    @RequestMapping("/index2")
+    public String index2(){
+        System.out.println("index2()...");
+        return "index2";
+    }
+
+
     @RequestMapping("/test")
     @ResponseBody
     public  String test(){

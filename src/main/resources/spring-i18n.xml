@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/task
+                          http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+    <!-- 国际化配置 -->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <!-- 设置cookieName名称，可以根据名称通过js来修改设置，默认的名称为 类名+.LOCALE如上图 -->
+        <!--如果这里设置了名称，需要再langController里也设置对应的名称，不然会找不到-->
+        <!--<property name="cookieName" value="language" />-->
+        <!-- 设置cookie可见的地址，默认是“/”即对网站所有地址都是可见的，如果设为其它地址，则只有该地址或其后的地址才可见 -->
+        <!--<property name="cookiePath" value="/" />-->
+        <property name="defaultLocale" value="zh"/>
+    </bean>
+
+    <!-- 国际化配置 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 国际化信息资源文件所在的目录 -->
+        <property name="basename" value="i18n.messages" />
+        <!-- 找不到对应的代码信息,就用这个代码作为标识 -->
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+
+</beans>

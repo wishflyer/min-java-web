@@ -3,7 +3,7 @@
 
 <html>
 <body>
-<h2>this is /pages/hello.jsp</h2>
+<h2>this is pages/index.jsp</h2>
 <a href="./i18n?lang=zh">中文版</a> | <!-- 对应 messages_zh.properties文件-->
 <a href="./i18n?lang=en">英文版</a> |    <!-- 对应 messages_ja.properties文件-->
 
