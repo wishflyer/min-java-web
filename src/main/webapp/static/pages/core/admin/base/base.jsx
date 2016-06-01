@@ -9,21 +9,21 @@ var Base = React.createClass({
 	getInitialState:function() {
 		return {
 			sidebarList:[
-				{url:"www.1.com",name:"目录1",icon:"star-o",children:[]},
+				{url:"/urlManager",name:"URL配置",icon:"star-o",children:[]},
 				{url:"www.2.com",name:"目录2",children:[{url:"www.baidu.com",name:"子目录1",children:[]}]},
-				{url:"www.3.com",name:"目录3",children:[]},
+				{url:"/urlManager2",name:"目录3",children:[]},
 			]
 		}
 	},
 	componentDidMount:function() {
-
+		console.log("base.jsx completed loaded")
 	},
 	logout:function() {
 
 	},
 	render:function() {
 		//let userName = getUserName() || "NA";
-		var userName = "test";
+		var userName = "test1";
 		return(<div>
 			<Page
 				userName={userName}

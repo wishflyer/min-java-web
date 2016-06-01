@@ -1,4 +1,4 @@
-package cn.dd.core.spring.exception.handler;
+package cn.dd.core.front.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ public class ExceptionHandlingController {
 
     @RequestMapping("/404")
     public String error_404(){
-        System.out.println("404()...");
         return "error/404";
     }
 

@@ -721,15 +721,15 @@
                             <!-- End Search Block -->
 
                             <!-- i18n icon -->
-                            <li class="hoverSelector">
-                                <i class="lang fa fa-globe"></i>
-                                <ul class="languages hoverSelectorBlock">
-                                    <li class="active">
-                                        <a href="#">中文<i class="fa fa-check"></i></a>
-                                    </li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </li>
+                            <%--<li class="hoverSelector">--%>
+                                <%--<i class="lang fa fa-globe"></i>--%>
+                                <%--<ul class="languages hoverSelectorBlock">--%>
+                                    <%--<li class="active">--%>
+                                        <%--<a href="#">中文<i class="fa fa-check"></i></a>--%>
+                                    <%--</li>--%>
+                                    <%--<li><a href="#">English</a></li>--%>
+                                <%--</ul>--%>
+                            <%--</li>--%>
 
                             <!-- i18n Block -->
                         </ul>
