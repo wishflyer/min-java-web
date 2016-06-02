@@ -41,4 +41,20 @@ public interface MenuService {
      */
     int setValid(Menu entity);
 
+
+    /**
+     * 删除
+     * @return 成功删除条数
+     */
+    int deleteById(String id);
+
+    /**
+     * 批量删除
+     */
+    int deleteBatch(String[] id);
+
+    /**
+     * 批量删除
+     */
+    int update(Menu entity);
 }

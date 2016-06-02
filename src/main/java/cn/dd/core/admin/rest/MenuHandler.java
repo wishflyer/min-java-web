@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +42,8 @@ public class MenuHandler {
 
     @RequestMapping(value = "/addMenu", method = RequestMethod.POST)
     public int addMenu(@RequestBody String jsonStr) {
-        System.out.println("/addMenu ..................................");
-        System.out.println("jsonStr:"+jsonStr);
+        //System.out.println("/addMenu ..................................");
+        //System.out.println("jsonStr:"+jsonStr);
         Map<String, Object> paramMap = new HashMap<>();
         int count = 0;
         try {
@@ -81,5 +82,37 @@ public class MenuHandler {
         return count;
     }
 
+    @RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+    public int deleteById(@RequestBody String jsonStr) throws IOException {
+        Map<String, Object> paramMap = JsonUtils.parseMap(jsonStr);
+        int count = menuService.deleteById((String)paramMap.get("id"));
+        return count;
+    }
+
+    @RequestMapping(value = "/deleteBatch", method = RequestMethod.POST)
+    public int deleteBatch(@RequestBody String jsonStr) throws IOException {
+        Map<String, Object> paramMap = JsonUtils.parseMap(jsonStr);
+        ArrayList<String> arrayList = (ArrayList<String>)paramMap.get("ids");
+        int size=arrayList.size();
+        String[] array = (String[])arrayList.toArray(new String[size]);
+        int count = menuService.deleteBatch(array);
+        return count;
+    }
+
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public int update(@RequestBody String jsonStr) throws IOException {
+        Map<String, Object> paramMap = JsonUtils.parseMap(jsonStr);
+        Menu menu = new Menu();
+        menu.setId((String)paramMap.get("id"));
+        menu.setUrl((String)paramMap.get("url"));
+        menu.setOther((String)paramMap.get("other"));
+        menu.setName((String)paramMap.get("name"));
+        menu.setConfig((String)paramMap.get("config"));
+        menu.setDescription((String)paramMap.get("description"));
+        menu.setIcon((String)paramMap.get("icon"));
+        int count = menuService.update(menu);
+        return count;
+    }
 
 }

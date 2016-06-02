@@ -38,7 +38,7 @@ public class MenuServiceImpl implements MenuService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(menuJSON);
+        //System.out.println(menuJSON);
         return menuJSON;
     }
 
@@ -70,5 +70,20 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public int setValid(Menu entity) {
         return menuDao.setValid(entity);
+    }
+
+    @Override
+    public int deleteById(String id) {
+        return menuDao.deleteById(id);
+    }
+
+    @Override
+    public int deleteBatch(String[] id) {
+        return menuDao.deleteBatch(id);
+    }
+
+    @Override
+    public int update(Menu entity) {
+        return menuDao.update(entity);
     }
 }
