@@ -16,6 +16,9 @@ public interface GenericDao<E, PK extends Serializable> {
     //分页查询
     List<E> getByPage(Map param) throws DataAccessException;
 
+    //批量查询
+    List<E> getByParam(E entity) throws DataAccessException;
+
     int deleteById(PK id) throws DataAccessException;
 
     int insert(E entity) throws DataAccessException;

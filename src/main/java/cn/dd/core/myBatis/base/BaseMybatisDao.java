@@ -34,6 +34,12 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
         return this.getSqlSession().selectList(this.getByPageStatement(), param);
     }
 
+
+    public List<E> getByParam(E entity){
+        return this.getSqlSession().selectList(this.getByParamStatement(), entity);
+    }
+
+
     public int deleteById(PK id) {
         int affectCount = this.getSqlSession().delete(this.getDeleteStatement(), id);
         return affectCount;
@@ -95,6 +101,8 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
     }
 
     public String getByPageStatement(){return this.getMybatisMapperNamesapce() + ".getByPage";}
+
+    public String getByParamStatement(){return this.getMybatisMapperNamesapce() + ".getByParam";}
 
     public String getInsertStatement() {
         return this.getMybatisMapperNamesapce() + ".insert";

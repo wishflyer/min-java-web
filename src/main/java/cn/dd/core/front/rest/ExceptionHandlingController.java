@@ -13,6 +13,8 @@ public class ExceptionHandlingController {
 
     @RequestMapping("/404")
     public String error_404(){
+        //System.out.println("404(),,,,");
+        //TODO 这里不知道为什么一直在访问，待处理
         return "error/404";
     }
 
