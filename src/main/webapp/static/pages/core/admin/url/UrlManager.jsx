@@ -25,17 +25,25 @@ var Ajax = components.ajax;
 
 var Debug = components.debug;
 var Icon = antd.Icon;
+var message = antd.message;
+
+const Modal = antd.Modal;
+const confirm = Modal.confirm;
+
+const Form = antd.Form;
+const FormItem =  Form.Item;
 
 const UrlManager=React.createClass({
 
 
     locals:{
         menuMap:{},
-        selectedMenuNode:[]
+        selectedMenuNode:[],
+
+        _nodeId:-999,
     },
     componentDidMount(){
-        console.log("componentDidMount()....");
-        this.loadTreeData();
+        this.reloadData();
     },
 
     getInitialState() {
@@ -49,36 +57,62 @@ const UrlManager=React.createClass({
                 pageNo:1,
                 totalRows:1000,
                 data: [],
-            }
+            },
+            showCreateModalState:false,
+            showModifyModalState:false,
+            modify_id:"",
+            modify_config:"",
+            modify_url:"",
+            modify_other:"",
+            modify_name:"",
+            modify_icon:"",
+            modify_description:"",
         };
     },
     loadTreeData(){
         var self = this;
-        Ajax.post("/menu/getMenuJSON", {}, treeJson => {
+        Ajax.post("./menu/getMenuJSON", {}, treeJson => {
             this.setState({
                 gData:[treeJson]
             });
-            Ajax.post("/menu/getMenuMap", {}, menuMap => {
+        });
+    },
+    reloadData(){
+        var self = this;
+        Ajax.post("./menu/getMenuJSON", {}, treeJson => {
+            this.setState({
+                gData:[treeJson]
+            });
+            Ajax.post("./menu/getMenuMap", {}, menuMap => {
                 self.locals.menuMap = menuMap;
                 self.rebuildTable(this.locals.selectedMenuNode);
             });
         });
     },
-    addChildNodeAction(node){
+    addChildNodeAction(e){
+
+        e.preventDefault();
+        console.log(e.target.config);
         let newMenu = {
-            id:node.id,
-            config:"1",
-            description:"description",
-            icon:"icon",
-            name:"name",
-            other:"other",
-            url:"url",
-        };
+            id:this.locals._nodeId,
+            config:e.target.config.value,
+            description:e.target.description.value,
+            icon:e.target.icon.value,
+            name:e.target.name.value,
+            other:e.target.other.value,
+            url:e.target.url.value
+        }
+
+        console.log(newMenu);
+
         var self = this;
-        Ajax.post("/menu/addMenu", newMenu, r => {
-            alert("success!!!count:"+ r);
+        Ajax.post("./menu/addMenu", newMenu, r => {
             if(r > 0){
-                self.loadTreeData();
+                message.success("成功添加菜单！");
+                this.hideAddModal();
+                self.reloadData();
+            }else{
+                message.error("操作失败！请联系管理员！");
             }
         });
     },
@@ -87,13 +121,18 @@ const UrlManager=React.createClass({
             id:node.id
         };
         var self = this;
-        Ajax.post("/menu/setValid", jsonStr, r => {
-            alert("setValidAction success!!!count:"+ r);
+        Ajax.post("./menu/setValid", jsonStr, r => {
             if(r > 0){
+                message.success("操作成功！");
                 // 方法1：重新刷新请求表格
-                self.loadTreeData();
+                // self.reloadData();
                 // 方法2：不刷新，直接改数据吧
-                //this.locals.menuMap[node.id]["status"] = <span style={{"color":"red"}}>失效</span>;
+                console.log(self.locals.menuMap[node.id]);
+                this.loadTreeData();
+                self.locals.menuMap[node.id]["status"] = "有效";
+                self.rebuildTable(this.locals.selectedMenuNode);
+            }else{
+                message.error("操作失败！");
             }
         });
     },
@@ -102,27 +141,78 @@ const UrlManager=React.createClass({
             id:node.id
         };
         var self = this;
-        Ajax.post("/menu/setInvalid", jsonStr, r => {
-            alert("setInvalidAction success!!!count:"+ r);
+        Ajax.post("./menu/setInvalid", jsonStr, r => {
             if(r > 0){
+                message.success("操作成功！");
                 // 方法1：重新刷新请求表格
-                self.loadTreeData();
+                // self.reloadData();
                 // 方法2：不刷新，直接改数据吧
-                // this.locals.menuMap[node.id]["status"] = "有效";
-
+                this.loadTreeData();
+                self.locals.menuMap[node.id]["status"] = <span style={{"color":"red"}}>失效</span>;
+                self.rebuildTable(this.locals.selectedMenuNode);
+            }else{
+                message.error("操作失败！");
             }
         });
+    },
+    deleteAction(node){
+        var self = this;
+        confirm({
+            title: '您是否确认要删除这项内容',
+            content: '该操作会把该节点及其下属节点都删除且无法恢复！！',
+            onOk() {
+                let jsonStr = {
+                    id:node.id
+                };
+                Ajax.post("./menu/deleteById", jsonStr, r => {
+                    if(r > 0){
+                        message.success("操作成功！");
+                        self.reloadData();
+                    }else{
+                        message.error("操作失败！");
+                    }
+                });
+            },
+            onCancel() {},
+        });
+    },
+
+    deleteBatchAction(){
+        var self = this;
+        confirm({
+            title: '您是否确认要删除这项内容',
+            content: '该操作会把该节点及其下属节点都删除且无法恢复！！',
+            onOk() {
+                let jsonStr = {
+                    ids:self.locals.selectedMenuNode
+                };
+                Ajax.post("./menu/deleteBatch", jsonStr, r => {
+                    if(r > 0){
+                        message.success("操作成功！");
+                        self.locals.selectedMenuNode=[];
+                        self.reloadData();
+                    }else{
+                        message.error("操作失败！");
+                    }
+                });
+            },
+            onCancel() {},
+        });
+
     },
     rebuildTable(nodes){
         let tableData = [];
         nodes.forEach((item) => {
             let _item = this.locals.menuMap[item];
-            if(_item.status == 0 || _item.status == "有效"){
-                _item.status = "有效";
-            }else{
-                _item.status = <span style={{"color":"red"}}>失效</span>;
+            if(_item != undefined){
+                if(_item.status == 0 || _item.status == "有效"){
+                    _item.status = "有效";
+                }else{
+                    _item.status = <span style={{"color":"red"}}>失效</span>;
+                }
+                tableData.push(_item);
             }
-            tableData.push(_item);
+
         });
         this.setState({
             table:{
@@ -189,6 +279,62 @@ const UrlManager=React.createClass({
         });
     },
 
+    showAddModal(node){
+        this.locals._nodeId = node.id;
+        this.setState({
+            showCreateModalState:true
+        });
+    },
+    hideAddModal(){
+        this.setState({
+            showCreateModalState:false
+        });
+    },
+
+    showModifyModal(node){
+        this.setState({
+            modify_id:node.id,
+            modify_config:node.config,
+            modify_description:node.description,
+            modify_icon:node.icon,
+            modify_name:node.name,
+            modify_other:node.other,
+            modify_url:node.url,
+
+            showModifyModalState:true
+        });
+    },
+    hideModifyModal(){
+        this.setState({
+            showModifyModalState:false
+        });
+    },
+
+    modifyMenuAction(e) {
+        e.preventDefault();
+
+        let params = {
+            id:e.target.modify_id.value,
+            description:e.target.modify_description.value,
+            icon:e.target.modify_icon.value,
+            config:e.target.modify_config.value,
+            name:e.target.modify_name.value,
+            other:e.target.modify_other.value,
+            url:this.state.modify_url
+        }
+
+        Ajax.post("./menu/update", params, r => {
+            if(r > 0) {
+                message.success('修改成功！');
+                this.hideModifyModal();
+                this.reloadData();
+            } else {
+                message.error('修改失败！');
+            }
+        });
+
+    },
+
     render(){
 
 
@@ -201,7 +347,7 @@ const UrlManager=React.createClass({
                 }else{
                     statusControl = <a onClick={this.setValidAction.bind(this,dataTable[i])}>置有效</a>
                 }
-                dataTable[i]['control']= <div><a  onClick={this.addChildNodeAction.bind(this,dataTable[i])}>增加子节点</a>&nbsp;&nbsp;|&nbsp;&nbsp;{statusControl}&nbsp;&nbsp;|&nbsp;&nbsp;<a onClick={null}>编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onClick={null}>删除</a></div>;
+                dataTable[i]['control']= <div><a  onClick={this.showAddModal.bind(this,dataTable[i])}>增加子节点</a>&nbsp;&nbsp;|&nbsp;&nbsp;{statusControl}&nbsp;&nbsp;|&nbsp;&nbsp;<a onClick={this.showModifyModal.bind(this,dataTable[i])}>编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onClick={this.deleteAction.bind(this,dataTable[i])}>删除</a></div>;
             }
             let tableProps={
                 //title:['UUID','名称','URL','配置','图标','描述','其他','GroupID','parentID','状态','操作'],
@@ -260,19 +406,73 @@ const UrlManager=React.createClass({
                     </Col>
                     <Col span={20}>
                         <Command>
-                            <Button type="primary" onClick={null} >删除全部选中</Button>
+                            <Button type="primary" onClick={this.deleteBatchAction.bind(this)} >删除全部选中</Button>
                         </Command>
                         <Query>
                             <Input labelName="名称:" name="id" placeholder="名称"/>
-                            <Input labelName="URL:" name="ctProductCode" placeholder="URL" />
-                            <Input labelName="配置:" name="hwProductCode" placeholder="配置" />
-                            <Input labelName="权限组:" name="id" placeholder="权限组"/>
-                            <Input labelName="其他:" name="speCode" placeholder="其他" />
-                            <Input labelName="状态:" name="zoneCode"  placeholder="状态" />
+                            <Input labelName="URL:" name="url" placeholder="URL" />
+                            <Input labelName="配置:" name="config" placeholder="配置" />
+                            <Input labelName="权限组:" name="groupId" placeholder="权限组"/>
+                            <Input labelName="其他:" name="other" placeholder="其他" />
+                            <Input labelName="状态:" name="status"  placeholder="状态" />
                         </Query>
                         <MyTable {...getTableData(this.state.table.data)}/>
                     </Col>
             </Row>
+            <Modal title="新增菜单" visible={this.state.showCreateModalState} footer={null} onCancel={this.hideAddModal}>
+                <Form horizontal form={this.props.form} onSubmit={this.addChildNodeAction}>
+                    <FormItem  label="菜单名称: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="菜单名称:" name="name" placeholder="菜单名称"   required />
+                    </FormItem>
+                    <FormItem  label="URL: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="URL:" name="url"  placeholder="URL"/>
+                    </FormItem>
+                    <FormItem  label="配置: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="配置:" name="config"  placeholder="配置" />
+                    </FormItem>
+                    <FormItem  label="图标: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="图标:" name="icon"  placeholder="图标" />
+                    </FormItem>
+                    <FormItem  label="描述: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="描述:" name="description"  placeholder="描述" />
+                    </FormItem>
+                    <FormItem  label="其他: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="其他:" name="other"  placeholder="其他" />
+                    </FormItem>
+                    <FormItem  wrapperCol={{  offset: 10 }} >
+                        <Button type="primary" htmlType="submit">提交</Button>
+                    </FormItem>
+                </Form>
+            </Modal>
+
+            <Modal title="编辑菜单" visible={this.state.showModifyModalState} footer={null} onCancel={this.hideModifyModal}>
+                <Form horizontal form={this.props.form} onSubmit={this.modifyMenuAction}>
+                    <FormItem  label="菜单编码: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="菜单编码:" name="modify_id" placeholder="菜单编码" value={this.state.modify_id} onChange={e => {this.setState({modify_id :e.target.value})}} disabled />
+                    </FormItem>
+                    <FormItem  label="菜单名称: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="菜单名称:" name="modify_name" value={this.state.modify_name} onChange={e => {this.setState({modify_name :e.target.value})}} placeholder="菜单名称"   required />
+                    </FormItem>
+                    <FormItem  label="URL: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="URL:" name="modify_url" value={this.state.modify_url} onChange={e => {this.setState({modify_url :e.target.value})}} placeholder="URL"/>
+                    </FormItem>
+                    <FormItem  label="配置: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="配置:" name="modify_config" value={this.state.modify_config} onChange={e => {this.setState({modify_config :e.target.value})}} placeholder="配置" />
+                    </FormItem>
+                    <FormItem  label="图标: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="图标:" name="modify_icon" value={this.state.modify_icon} onChange={e => {this.setState({modify_icon :e.target.value})}} placeholder="图标" />
+                    </FormItem>
+                    <FormItem  label="描述: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="描述:" name="modify_description" value={this.state.modify_description} onChange={e => {this.setState({modify_description :e.target.value})}} placeholder="描述" />
+                    </FormItem>
+                    <FormItem  label="其他: " labelCol={{ span: 7 }} wrapperCol={{ span: 13 }}>
+                        <Input labelName="其他:" name="modify_other" value={this.state.modify_other} onChange={e => {this.setState({modify_other :e.target.value})}} placeholder="其他" />
+                    </FormItem>
+                    <FormItem  wrapperCol={{  offset: 10 }} >
+                        <Button type="primary" htmlType="submit">提交</Button>
+                    </FormItem>
+                </Form>
+            </Modal>
 		</div>);
 	}
 });
