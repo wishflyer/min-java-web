@@ -14,7 +14,7 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <a class="navbar-brand" href="index.html" tppabs="http://htmlstream.com/preview/unify-v1.9/index.html">
-                        <img id="logo-header" src="/static/unify/assets/img/logo1-default.png" tppabs="http://htmlstream.com/preview/unify-v1.9/assets/img/logo1-default.png" alt="Logo">
+                        <img id="logo-header" src="<%=basePath%>static/unify/assets/img/logo1-default.png" tppabs="http://htmlstream.com/preview/unify-v1.9/assets/img/logo1-default.png" alt="Logo">
                     </a>
                 </div>
 

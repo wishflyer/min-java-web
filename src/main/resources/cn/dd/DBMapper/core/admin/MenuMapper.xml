@@ -132,39 +132,39 @@
         </foreach>
     </insert>
 
-	<update id="update" >
-         UPDATE menu
-         <set>
-             <if test="name != null">
-                  name = #{name,jdbcType=VARCHAR},
-              </if>
-             <if test="url != null">
-                  url = #{url,jdbcType=VARCHAR},
-              </if>
-             <if test="config != null">
-                  config = #{config,jdbcType=VARCHAR},
-              </if>
-             <if test="icon != null">
-                  icon = #{icon,jdbcType=VARCHAR},
-              </if>
-             <if test="description != null">
-                  description = #{description,jdbcType=VARCHAR},
-              </if>
-             <if test="other != null">
-                  other = #{other,jdbcType=VARCHAR},
-              </if>
-             <if test="groupId != null">
-                  group_id = #{groupId,jdbcType=VARCHAR},
-              </if>
-             <if test="parentId != null">
-                  parent_id = #{parentId,jdbcType=VARCHAR},
-              </if>
-             <if test="status != null">
-                  status = #{status,jdbcType=INTEGER}
-              </if>
+    <update id="update" >
+        UPDATE menu
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="config != null">
+                config = #{config,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="other != null">
+                other = #{other,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER}
+            </if>
         </set>
         WHERE
-        id = #{id} 
+        id = #{id}
     </update>
 
     <update id="setInvalid">
@@ -244,6 +244,16 @@
         FROM menu
         <include refid="BaseWhere" />
     </select>
+
+
+    <update id="changeParent" parameterType="Map">
+        UPDATE menu
+        <set>
+            parent_id = #{parentId,jdbcType=VARCHAR},
+        </set>
+        WHERE
+        id = #{childId}
+    </update>
 
 </mapper>
 

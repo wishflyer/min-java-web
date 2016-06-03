@@ -57,4 +57,12 @@ public interface MenuService {
      * 批量删除
      */
     int update(Menu entity);
+
+    /**
+     * 把子节点挂在父节点上
+     * @param parentId 父亲节点ID
+     * @param childId 子节点ID
+     * @return 处理结果
+     */
+    int changeParent(String parentId,String childId);
 }

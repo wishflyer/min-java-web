@@ -86,4 +86,12 @@ public class MenuServiceImpl implements MenuService {
     public int update(Menu entity) {
         return menuDao.update(entity);
     }
+
+    @Override
+    public int changeParent(String parentId, String childId) {
+        Map<String,String> paramMap = new HashMap<String,String>();
+        paramMap.put("parentId",parentId);
+        paramMap.put("childId",childId);
+        return menuDao.changeParent(paramMap);
+    }
 }

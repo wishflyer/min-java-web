@@ -96,6 +96,28 @@ public abstract class BaseMybatisDao<E, PK extends Serializable> extends SqlSess
 
     public abstract String getMybatisMapperNamesapce();
 
+    ////////基本语句/////////
+//    public int runUpdateStatement(String methodName,Object o) {
+//        int affectCount = this.getSqlSession().update(this.getMybatisMapperNamesapce() + "."+methodName, o);
+//        return affectCount;
+//    }
+//    public int runDeleteStatement(String methodName,Object o) {
+//        int affectCount = this.getSqlSession().delete(this.getMybatisMapperNamesapce() + "."+methodName, o);
+//        return affectCount;
+//    }
+//    public int runDeleteStatement(String methodName,Object[] o) {
+//        int affectCount = this.getSqlSession().delete(this.getMybatisMapperNamesapce() + "."+methodName, o);
+//        return affectCount;
+//    }
+//
+//    public int runInsertStatement(String methodName,Object o) {
+//        int affectCount = this.getSqlSession().insert(this.getMybatisMapperNamesapce() + "."+methodName, o);
+//        return affectCount;
+//    }
+
+    ////////////////////////
+
+
     public String getFindByPrimaryKeyStatement() {
         return this.getMybatisMapperNamesapce() + ".getById";
     }

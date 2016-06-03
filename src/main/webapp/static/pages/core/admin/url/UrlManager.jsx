@@ -32,13 +32,15 @@ const confirm = Modal.confirm;
 
 const Form = antd.Form;
 const FormItem =  Form.Item;
+const createForm = Form.create;
 
-const UrlManager=React.createClass({
+var UrlManager=React.createClass({
 
 
     locals:{
         menuMap:{},
         selectedMenuNode:[],
+        keys:[],
 
         _nodeId:-999,
     },
@@ -52,10 +54,11 @@ const UrlManager=React.createClass({
             defaultExpandedKeys: this.props.defaultExpandedKeys || ['-1'],
             defaultSelectedKeys: this.props.defaultSelectedKeys,
             defaultCheckedKeys: this.props.defaultCheckedKeys || ['-1'],
+            selectedKeys:[],
             table:{
-                pageSize:10,
+                pageSize:999,
                 pageNo:1,
-                totalRows:1000,
+                totalRows:999,
                 data: [],
             },
             showCreateModalState:false,
@@ -81,7 +84,8 @@ const UrlManager=React.createClass({
         var self = this;
         Ajax.post("./menu/getMenuJSON", {}, treeJson => {
             this.setState({
-                gData:[treeJson]
+                gData:[treeJson], 
+                selectedKeys:[],
             });
             Ajax.post("./menu/getMenuMap", {}, menuMap => {
                 self.locals.menuMap = menuMap;
@@ -103,12 +107,21 @@ const UrlManager=React.createClass({
             url:e.target.url.value
         }
 
+        
         console.log(newMenu);
 
         var self = this;
+        var target = e.target;
         Ajax.post("./menu/addMenu", newMenu, r => {
             if(r > 0){
                 message.success("成功添加菜单！");
+                //清空数据
+                target.config.value = "";
+                target.description.value = "";
+                target.name.value = "";
+                target.icon.value = "";
+                target.other.value= "";
+                target.url.value = "";
                 this.hideAddModal();
                 self.reloadData();
             }else{
@@ -130,7 +143,7 @@ const UrlManager=React.createClass({
                 console.log(self.locals.menuMap[node.id]);
                 this.loadTreeData();
                 self.locals.menuMap[node.id]["status"] = "有效";
-                self.rebuildTable(this.locals.selectedMenuNode);
+                self.rebuildTable(this.state.selectedKeys);
             }else{
                 message.error("操作失败！");
             }
@@ -149,7 +162,7 @@ const UrlManager=React.createClass({
                 // 方法2：不刷新，直接改数据吧
                 this.loadTreeData();
                 self.locals.menuMap[node.id]["status"] = <span style={{"color":"red"}}>失效</span>;
-                self.rebuildTable(this.locals.selectedMenuNode);
+                self.rebuildTable(this.state.selectedKeys);
             }else{
                 message.error("操作失败！");
             }
@@ -161,10 +174,12 @@ const UrlManager=React.createClass({
             title: '您是否确认要删除这项内容',
             content: '该操作会把该节点及其下属节点都删除且无法恢复！！',
             onOk() {
+                let deleteKeys = self.getSelectedTreeNodes([node.id]);
+                console.log(deleteKeys);
                 let jsonStr = {
-                    id:node.id
+                    ids:deleteKeys
                 };
-                Ajax.post("./menu/deleteById", jsonStr, r => {
+                Ajax.post("./menu/deleteBatch", jsonStr, r => {
                     if(r > 0){
                         message.success("操作成功！");
                         self.reloadData();
@@ -176,15 +191,17 @@ const UrlManager=React.createClass({
             onCancel() {},
         });
     },
-
+    
     deleteBatchAction(){
+        
         var self = this;
         confirm({
             title: '您是否确认要删除这项内容',
             content: '该操作会把该节点及其下属节点都删除且无法恢复！！',
             onOk() {
+                let deleteKeys = self.getSelectedTreeNodes();
                 let jsonStr = {
-                    ids:self.locals.selectedMenuNode
+                    ids:deleteKeys
                 };
                 Ajax.post("./menu/deleteBatch", jsonStr, r => {
                     if(r > 0){
@@ -223,8 +240,57 @@ const UrlManager=React.createClass({
             },
         })
     },
-    onSelect(nodes) {
-        console.log('selected', nodes);
+    /*********************************************************************
+     * 获得该组节点及其下得全部节点
+     * @param  {Array} nodeArray 节点数组 ["a","b","c"]
+     * @return {Array} 该组节点及其下得全部节点
+     *********************************************************************/
+    getTreeNodes(node){
+        //找到了
+        //console.log(node);
+        let nodeArray = [];
+        nodeArray.push(node.key);
+        for(var index in node.children){
+            nodeArray = nodeArray.concat(this.getTreeNodes(node.children[index]));
+        }
+        return nodeArray
+    },
+    searchInTree(searchNodeArray,tree){
+        //如果当前树的节点在查找的数组中，则返回该节点及其下方所有节点
+        //console.log($.inArray(tree.key, searchNodeArray));
+        if($.inArray(tree.key, searchNodeArray) != -1){
+            return this.getTreeNodes(tree);;
+        }
+
+        //在该节点的孩子中查找
+        let allNodeArray = [];
+        for(var index in tree.children){
+            //allNodeArray = $.unique(allNodeArray,arr2)
+            allNodeArray = allNodeArray.concat(this.searchInTree(searchNodeArray,tree.children[index]));
+        }
+        //allNodeArray = $.unique(allNodeArray)
+        return allNodeArray;
+    },
+    /*********************************************************************/
+    getSelectedTreeNodes(){
+        console.log("this.state.selectedKeys:",this.state.selectedKeys)
+        return this.searchInTree(this.state.selectedKeys,this.state.gData[0]);
+    },
+
+    onSelect(nodes, info) {
+        //console.log('selected', nodes);
+        // console.log('onSelect', info);
+
+        // this.locals.keys = [];
+        // this.locals.keys.push(info.node.props.eventKey);
+        // this.getTreeChildrenNodes(info.node);
+        // console.log(this.locals.keys);
+        
+        //var aa = this.searchInTree([info.node.props.eventKey],this.state.gData[0]);
+        //console.log("Search Result:",this.getSelectedTreeNodes(nodes));
+        if(info.node.props.eventKey != -1){
+            this.setState({selectedKeys:nodes });
+        }
         this.rebuildTable(nodes);
         this.locals.selectedMenuNode = nodes;
     },
@@ -232,16 +298,20 @@ const UrlManager=React.createClass({
         console.log('onCheck', info);
     },
     onDragEnter(info) {
-        console.log(info);
+        //console.log(info);
         // expandedKeys 需要受控时设置
         // this.setState({
         //   expandedKeys: info.expandedKeys,
         // });
     },
     onDrop(info) {
+        console.log(info.dropToGap);
         console.log(info);
         const dropKey = info.node.props.eventKey;
         const dragKey = info.dragNode.props.eventKey;
+        
+        
+        
         // const dragNodesKeys = info.dragNodesKeys;
         const loop = (data, key, callback) => {
             data.forEach((item, index, arr) => {
@@ -260,26 +330,65 @@ const UrlManager=React.createClass({
             dragObj = item;
         });
         if (info.dropToGap) {
+            //移动节点作为目标节点的兄弟节点
             let ar;
             let i;
+            let parentId;
             loop(data, dropKey, (item, index, arr) => {
+
                 ar = arr;
                 i = index;
+                parentId =  item.parentId;
+                console.log("final:",item);
+                ar.splice(i, 0, dragObj);
+
+                let jsonStr = {
+                    parentId:parentId,
+                    childId:dragKey
+                };
+
+                Ajax.post("./menu/changeParent", jsonStr, r => {
+                    if(r > 0){
+
+                        message.success("操作成功！");
+
+                        this.setState({
+                            gData: data,
+                        });
+
+                    }else{
+                        message.error("操作失败！");
+                    }
+                });
             });
-            ar.splice(i, 0, dragObj);
+
         } else {
-            loop(data, dropKey, (item) => {
-                item.children = item.children || [];
-                // where to insert 示例添加到尾部，可以是随意位置
-                item.children.push(dragObj);
+            //移动节点作为目标节点的叶子节点
+            let jsonStr = {
+                parentId:dropKey,
+                childId:dragKey
+            };
+            Ajax.post("./menu/changeParent", jsonStr, r => {
+                if(r > 0){
+                    message.success("操作成功！");
+                    loop(data, dropKey, (item) => {
+                        item.children = item.children || [];
+                        // where to insert 示例添加到尾部，可以是随意位置
+                        item.children.push(dragObj);
+                    });
+                    this.setState({
+                        gData: data,
+                    });
+                }else{
+                    message.error("操作失败！");
+                }
             });
         }
-        this.setState({
-            gData: data,
-        });
     },
 
     showAddModal(node){
+        //console.log(this.props.form);
+        //this.props.form.resetFields();
         this.locals._nodeId = node.id;
         this.setState({
             showCreateModalState:true
@@ -359,7 +468,8 @@ const UrlManager=React.createClass({
                 pageSize:this.state.table.pageSize,
                 pageNo:this.state.table.pageNo, //page:this.state.offset
                 totalRows:this.state.table.totalRows,
-                checkType:"none"
+                checkType:"none",
+                turnable:false,
             };
             return tableProps;
         }
@@ -399,7 +509,7 @@ const UrlManager=React.createClass({
                               defaultCheckedKeys={this.state.defaultCheckedKeys}
                               defaultExpandedKeys={this.state.defaultExpandedKeys}
                               defaultSelectedKeys={this.state.defaultSelectedKeys}
-                              onSelect={this.onSelect}
+                              onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
                               onCheck={this.onCheck}>
                             {loop(this.state.gData)}
                         </Tree>
@@ -476,5 +586,7 @@ const UrlManager=React.createClass({
 		</div>);
 	}
 });
+
+//UrlManager = createForm()(UrlManager);
 
 ReactDOM.render(<UrlManager />, document.getElementById("page-wrapper"));
