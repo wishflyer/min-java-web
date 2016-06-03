@@ -111,6 +111,8 @@ public class MenuUtils {
         //递归设置节点isSelected状态
         //processTreeSelectedStatus(rootEntity);
 
+        rootEntity.parentId = "-9999";
+
         return rootEntity;
 
     }

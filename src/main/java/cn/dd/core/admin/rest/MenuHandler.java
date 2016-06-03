@@ -118,8 +118,6 @@ public class MenuHandler {
     @RequestMapping(value = "/changeParent", method = RequestMethod.POST)
     public int changeParent(@RequestBody String jsonStr) throws IOException {
         Map<String, Object> paramMap = JsonUtils.parseMap(jsonStr);
-        System.out.println("parentId:"+(String)paramMap.get("parentId"));
-        System.out.println("childId:"+(String)paramMap.get("childId"));
         int count = menuService.changeParent((String)paramMap.get("parentId"),(String)paramMap.get("childId"));
         return count;
     }
