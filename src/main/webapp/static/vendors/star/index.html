@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>jQuery星级评分</title>	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<script type="text/javascript" src="jquery.js"></script>
+	<!-- script type="text/javascript" src="jquery.rater.js"></script -->
+	<script type="text/javascript" src="jquery.rater.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="rater.css" media="screen" /> 
+
+	<script type="text/javascript">
+
+		var say = function(){
+			alert("test");
+		}
+
+	</script>
+
+</head>
+<body>
+	<div class="header">
+		<h1>jQuery Helper for Komodo Media CSS Star Rater (Redux)</h1>
+		<h2>Dynamicly create a Ajax rater</h2>
+	</div>
+	<div class="demos">
+<pre>
+/**
+ * jQuery Ajax Rater Plugin
+ *
+ * This rater is based on the code Ritesh Agrawal did. Unfortunatly his CSS and the hover technique breaks in some browsers.
+ * So i thought, why not use the best CSS star-rater known to man kind and throw it in the mix.
+ * I have used the CSS and technique from Komodo Media since it is stable and tested on many, many browsers.
+ *
+ * This rater compared, has no cancel button. But i think we can live with that :)
+ * To avoid conflicts i have changed the function name.
+ * 
+ * Licensed under The MIT License
+ */			
+</pre>
+
+	<!-- // ================================================================= // -->
+	
+		<h3>Basic</h3>
+		<div id="demo1" class="demo">The one we all know and love<br />
+	
+		</div>
+		<code class="source">
+			$('#demo1').rater('ratingsdemo.php');
+		</code>
+		<script type="text/javascript">
+			$('#demo1').rater('ratingsdemo.php');
+		</script>
+
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Small</h3>
+		<div id="demo2" class="demo">Via the options you can switch the style<br />
+	
+		</div>
+		<code class="source">
+			$('#demo2').rater('ratingsdemo.php', {style: 'small'});
+		</code>
+		<script type="text/javascript">
+			$('#demo2').rater(say, {style: 'small'});
+		</script>
+
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Inline</h3>
+		<div id="demo3" class="demo">You can chain them, using inline style:<br />
+			<span id="inline1"> </span> <b>and</b> <span id="inline2"> </span>
+		</div>
+
+		<code class="source">
+			$('#inline1').rater('ratingsdemo.php', {style: 'inline'});<br />
+			$('#inline2').rater('ratingsdemo.php', {style: 'inline', curvalue:3});
+		</code>
+		<script type="text/javascript">
+			$('#inline1').rater('ratingsdemo.php', {style: 'inline'});
+			$('#inline2').rater('ratingsdemo.php', {style: 'inline', curvalue:3});
+		</script>
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Single Star (GMail style)</h3>
+		<div id="demo4" class="demo">This acts like a ON/OFF trigger <small>(since it's supposed to act as trigger, it does not show ajax response)</small><br />
+
+	
+		</div>
+		<code class="source">
+			$('#demo4').rater('ratingsdemo.php', {maxvalue:1, style: 'basic'});
+		</code>
+		<script type="text/javascript">
+			$('#demo4').rater('ratingsdemo.php', {maxvalue:1, style: 'basic'});
+		</script>
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Basic, with initial value</h3>
+		<div id="demo5" class="demo">You can set the initial value in the options too!<br />
+
+	
+		</div>
+		<code class="source">
+			$('#demo5').rater('ratingsdemo.php', {style: 'basic', curvalue:2});
+		</code>
+		<script type="text/javascript">
+			$('#demo5').rater('ratingsdemo.php', {style: 'basic', curvalue:2});
+		</script>
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Basic, but more then 5 stars</h3>
+		<div id="demo6" class="demo">You can have as many stars you want. CSS is adjusted respectivly.<br />
+
+	
+		</div>
+		<code class="source">
+			$('#demo6').rater('ratingsdemo.php', {maxvalue:10, style: 'basic', curvalue:0});
+		</code>
+		<script type="text/javascript">
+			$('#demo6').rater('ratingsdemo.php', {maxvalue:10, style: 'basic', curvalue:0});
+		</script>
+		
+	<!-- // ================================================================= // -->
+	
+		<h3>Or Small.. doesn't matter</h3>
+		<div id="demo7" class="demo">It's all dynamic.. :)<br />
+
+	
+		</div>
+		<code class="source">
+			$('#demo7').rater('ratingsdemo.php', {maxvalue:20, style: 'small', curvalue:3});
+		</code>
+		<script type="text/javascript">
+			$('#demo7').rater('ratingsdemo.php', {maxvalue:20, style: 'small', curvalue:3});
+		</script>
+		
+	<!-- // ====================== END OF DEMOS ============================ // -->
+	
+
+</body>
+</html>

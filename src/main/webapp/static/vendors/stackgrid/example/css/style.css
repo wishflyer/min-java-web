@@ -1,0 +1,108 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light');
+}
+
+#satckGridWall div,#satckGridWall span,#satckGridWall applet,#satckGridWall object,#satckGridWall iframe,#satckGridWall
+h1,#satckGridWall h2,#satckGridWall h3,#satckGridWall h4,#satckGridWall h5,#satckGridWall h6,#satckGridWall p,#satckGridWall blockquote,#satckGridWall pre,#satckGridWall
+a,#satckGridWall abbr,#satckGridWall acronym,#satckGridWall address,#satckGridWall big,#satckGridWall cite,#satckGridWall code,#satckGridWall
+del,#satckGridWall dfn,#satckGridWall em,#satckGridWall img,#satckGridWall ins,#satckGridWall kbd,#satckGridWall q,#satckGridWall s,#satckGridWall samp,#satckGridWall
+small,#satckGridWall strike,#satckGridWall strong,#satckGridWall sub,#satckGridWall sup,#satckGridWall tt,#satckGridWall var,#satckGridWall
+b,#satckGridWall u,#satckGridWall i,#satckGridWall center,#satckGridWall
+dl,#satckGridWall dt,#satckGridWall dd,#satckGridWall ol,#satckGridWall ul,#satckGridWall li,#satckGridWall
+fieldset,#satckGridWall form,#satckGridWall label,#satckGridWall legend,#satckGridWall
+table,#satckGridWall caption,#satckGridWall tbody,#satckGridWall tfoot,#satckGridWall thead,#satckGridWall tr,#satckGridWall th,#satckGridWall td,#satckGridWall
+article,#satckGridWall aside,#satckGridWall canvas,#satckGridWall details,#satckGridWall embed,#satckGridWall
+figure,#satckGridWall figcaption,#satckGridWall footer,#satckGridWall header,#satckGridWall hgroup,#satckGridWall
+menu,#satckGridWall nav,#satckGridWall output,#satckGridWall ruby,#satckGridWall section,#satckGridWall summary,#satckGridWall
+time,#satckGridWall mark,#satckGridWall audio,#satckGridWall video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+
+#satckGridWall a:link,
+#satckGridWall a:visited {
+  text-decoration: none; }
+
+#satckGridWall #header {
+  background-color: #FCFCFC;
+  height: 72px;
+  line-height: 72px;
+  width: 100%;
+  z-index: 10; }
+    
+    line-height: 72px; }
+#satckGridWall #header a:link,
+#satckGridWall #header a:visited {
+    -webkit-transition: 0.1s ease;
+    -moz-transition: 0.1s ease;
+    transition: 0.1s ease;
+    color: #40DFFF;
+    display: inline-block;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 72px; }
+#satckGridWall #header a:link:hover,
+#satckGridWall #header a:visited:hover {
+  color: #00D4FF; }
+#satckGridWall #header a:link:active,
+#satckGridWall #header a:visited:active {
+  color: #00AAFF; }
+
+#satckGridWall-content  {
+  /* background-color: #40DFFF; */
+  font-size: 0;
+  text-align: center;
+  width: 100%;
+  z-index: 20; }
+
+#satckGridWall a.control-button {
+  -webkit-transition: 0.1s ease;
+  -moz-transition: 0.1s ease;
+  transition: 0.1s ease;
+  background-color: #40DFFF;
+  border-left: 1px solid #00D4FF;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  padding: 0.75em 1em; }
+  #satckGridWall a.control-button:hover {
+    background-color: #00D4FF; }
+  #satckGridWall a.control-button:active {
+    background-color: #00AAFF; }
+
+#satckGridWall {
+  height: auto;
+  margin: 20px 0;
+  overflow: hidden;
+  width: 100%; }
+
+#satckGridWall .satckGridWall-grid-container {
+  /* background-color: #F9F9F9; */
+  /* box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15); */
+  margin: 20px auto;
+  position: relative; }
+
+#satckGridWall .satckGridWall-grid-item {
+  display: inline-block;
+  font-size: 0;
+  position: absolute; }
+
+#satckGridWall .satckGridWall-grid-item img {
+  cursor: pointer;
+  display: block;
+  width: 100%; }
