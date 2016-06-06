@@ -4,6 +4,7 @@ import cn.dd.core.admin.entity.Menu;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -20,6 +21,18 @@ public interface MenuService {
      * @return Menu的Map对象
      */
     Map<String,Menu> getMenuMap();
+
+    /**
+     * 获得RouterConfig对象
+     * @return RouterConfig对象
+     */
+    String getRouterConfig();
+
+    /**
+     * 获得MenuConfig对象
+     * @return MenuConfig对象
+     */
+    //String getMenuConfig() throws IOException;
 
     /**
      * 添加Menu
@@ -65,4 +78,5 @@ public interface MenuService {
      * @return 处理结果
      */
     int changeParent(String parentId,String childId);
+
 }

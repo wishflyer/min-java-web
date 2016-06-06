@@ -21,6 +21,8 @@ public class MenuUtils {
         //public String disableCheckbox;
         //标题
         public String title;
+        //名称 同title
+        public String name;
         //设置为叶子节点
         //public String isLeaf;
 
@@ -28,6 +30,8 @@ public class MenuUtils {
         public String icon;
         //状态
         public int status;
+        //url
+        public String url;
 
         public LinkedList<TreeNodeEntity> children;
 
@@ -40,6 +44,8 @@ public class MenuUtils {
         treeNodeEntity.title = menu.getName();
         treeNodeEntity.parentId = menu.getParentId();
         treeNodeEntity.icon = menu.getIcon();
+        treeNodeEntity.url = menu.getUrl();
+        treeNodeEntity.name = menu.getName();
         treeNodeEntity.status = menu.getStatus();
         treeNodeEntity.children = new LinkedList<TreeNodeEntity>();
         return treeNodeEntity;
@@ -54,10 +60,12 @@ public class MenuUtils {
         //初始化菜单根节点rootEntity
         TreeNodeEntity rootEntity = new TreeNodeEntity();
         rootEntity.title = "根节点";
+        rootEntity.name = "根节点";
         rootEntity.key= "-1";
         rootEntity.parentId = "-1";
         rootEntity.icon = "home";
         rootEntity.status = 0;
+        rootEntity.url = "#";
         rootEntity.children = new LinkedList<TreeNodeEntity>();
 
 

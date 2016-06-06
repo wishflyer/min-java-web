@@ -8,15 +8,49 @@ var Base = React.createClass({
 	displayName: 'Base',
 	getInitialState:function() {
 		return {
-			sidebarList:[
-				{url:"/urlManager",name:"URL配置",icon:"star-o",children:[]},
-				{url:"www.2.com",name:"目录2",children:[{url:"www.baidu.com",name:"子目录1",children:[]}]},
-				{url:"/urlManager2",name:"目录3",children:[]},
-			]
+			//sidebarList:[{"key":"cc0c589fac5b4634917e8714e26249bc","parentId":"-1","title":"URL??","name":"URL??","icon":"heart-o","status":0,"url":"/urlManager","children":[]},{"key":"9efaac7d7e744dce951a9432f15938a3","parentId":"-1","title":"URL??2","name":"URL??2","icon":"","status":0,"url":"","children":[]}]
+			sidebarList:[]
 		}
 	},
 	componentDidMount:function() {
 		console.log("base.jsx completed loaded")
+
+		// {url:"/urlManager",name:"URL配置",icon:"star-o",children:[]},
+		// 		{url:"www.2.com",name:"目录2",children:[{url:"www.baidu.com",name:"子目录1",children:[]}]},
+		// 		{url:"/urlManager2",name:"目录3",children:[]},
+		var self = this;
+		window.dd = window.dd || {}
+		//菜单未定义
+		if(!window.dd.MenuConfig){
+			console.log(">>getMenuConfig>>");
+			$.ajax({
+				url:"./menu/getMenuJSON",
+				method:"GET",
+				contentType:"application/json",
+				dataType: 'json',
+				success: function(data){
+					if(data.children){
+						self.setState({sidebarList:data.children});
+						window.dd.MenuConfig = data.children;
+					}
+					//	window.dd.RouteConfig =	(new Function('return ' + data))();
+					//window.dd.RouteConfig = eval('('+ data +')');
+					//console.log(window.dd.RouteConfig);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					//console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrown);
+					//alert('error!!!!');
+				},
+				complete: function(){
+					//alert('complete!!!!');
+				},
+			}) 
+		}else{
+			this.setState({sidebarList:window.dd.MenuConfig});
+		}
+
 	},
 	logout:function() {
 

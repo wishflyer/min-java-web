@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>static/vendors/normalize/normalize.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="http://127.0.0.1:3000/dd.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/dist/dd.css"/>
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3000/dd.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/dist/dd.css"/>--%>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/style.css"/>
 
 
@@ -33,11 +33,11 @@
 
 <script src="<%=basePath%>static/pages/core/admin/base/config.js"></script>
 
-<script src="<%=basePath%>static/js/dist/common.js"></script>
-<script src="<%=basePath%>static/js/dist/dd.js"></script>
+<%--<script src="<%=basePath%>static/js/dist/common.js"></script>--%>
+<%--<script src="<%=basePath%>static/js/dist/dd.js"></script>--%>
 
-<%--<script src="http://127.0.0.1:3000/common.js"></script>--%>
-<%--<script src="http://127.0.0.1:3000/dd.js"></script>--%>
+<script src="http://127.0.0.1:3000/common.js"></script>
+<script src="http://127.0.0.1:3000/dd.js"></script>
 
 
 <%--<script src="../..<%=basePath%>static/vendors/JSXTransformer.js"></script>--%>

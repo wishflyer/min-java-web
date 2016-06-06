@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -28,6 +29,21 @@ public class MenuHandler {
     }
 
 
+    @RequestMapping("/getRouterConfig")
+    public String getRouterConfig() throws IOException {
+        String routerConfig = menuService.getRouterConfig();
+        //String json =  JsonUtils.toJson(routerConfig);
+        return routerConfig;
+    }
+
+//
+//    @RequestMapping("/getMenuConfig")
+//    public String getMenuConfig() throws IOException {
+//        String menuConfig = menuService.getMenuConfig();
+//        //String json =  JsonUtils.toJson(routerConfig);
+//        return menuConfig;
+//    }
+
     @RequestMapping("/getMenuMap")
     public String getMenuMap() {
         Map<String, Menu> menuMap = menuService.getMenuMap();
@@ -39,6 +55,7 @@ public class MenuHandler {
         }
         return jsonMap;
     }
+
 
     @RequestMapping(value = "/addMenu", method = RequestMethod.POST)
     public int addMenu(@RequestBody String jsonStr) {
