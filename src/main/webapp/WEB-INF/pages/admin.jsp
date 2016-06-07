@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>static/vendors/normalize/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="http://127.0.0.1:3000/dd.css"/>
-    <%--<link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/dist/dd.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/style.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/dist/dd.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="<%=basePath%>static/js/style.css"/>--%>
 
 
     <link rel="icon" href="<%=basePath%>static/favicon/favicon.ico" mce_href="<%=basePath%>static/favicon/favicon.ico" type="image/x-icon">

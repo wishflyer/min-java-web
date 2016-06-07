@@ -721,6 +721,18 @@
                             <!-- End Search Block -->
 
                             <!-- i18n icon -->
+                            <li>
+                            <i class=" search fa fa-language"></i> language
+                               
+                                <div class="search-open">
+                                    <div class="input-group animated fadeInDown">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button class="btn-u" type="button">Go</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
                             <%--<li class="hoverSelector">--%>
                                 <%--<i class="lang fa fa-globe"></i>--%>
                                 <%--<ul class="languages hoverSelectorBlock">--%>

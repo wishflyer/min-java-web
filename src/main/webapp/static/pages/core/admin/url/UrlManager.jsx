@@ -34,13 +34,22 @@ const Form = antd.Form;
 const FormItem =  Form.Item;
 const createForm = Form.create;
 
+const Tools = components.tools;
+
 var UrlManager=React.createClass({
+
+    getDefaultProps() {
+        return {
+            menuGroupId:"0"
+        }
+    },
 
 
     locals:{
         menuMap:{},
         selectedMenuNode:[],
         keys:[],
+        params:{},
 
         _nodeId:-999,
     },
@@ -74,7 +83,7 @@ var UrlManager=React.createClass({
     },
     loadTreeData(){
         var self = this;
-        Ajax.post("./menu/getMenuJSON", {}, treeJson => {
+        Ajax.post("./menu/getMenuJSON", {groupId:this.props.menuGroupId}, treeJson => {
             this.setState({
                 gData:[treeJson]
             });
@@ -82,12 +91,12 @@ var UrlManager=React.createClass({
     },
     reloadData(){
         var self = this;
-        Ajax.post("./menu/getMenuJSON", {}, treeJson => {
+        Ajax.post("./menu/getMenuJSON", {groupId:this.props.menuGroupId}, treeJson => {
             this.setState({
                 gData:[treeJson], 
                 selectedKeys:[],
             });
-            Ajax.post("./menu/getMenuMap", {}, menuMap => {
+            Ajax.post("./menu/getMenuMap", {groupId:this.props.menuGroupId}, menuMap => {
                 self.locals.menuMap = menuMap;
                 self.rebuildTable(this.locals.selectedMenuNode);
             });
@@ -193,7 +202,7 @@ var UrlManager=React.createClass({
     },
     
     deleteBatchAction(){
-        
+        if(this.state.selectedKeys.length == 0) return;
         var self = this;
         confirm({
             title: '您是否确认要删除这项内容',
@@ -288,9 +297,12 @@ var UrlManager=React.createClass({
         
         //var aa = this.searchInTree([info.node.props.eventKey],this.state.gData[0]);
         //console.log("Search Result:",this.getSelectedTreeNodes(nodes));
-        if(info.node.props.eventKey != -1){
-            this.setState({selectedKeys:nodes });
-        }
+        //
+        //设置根目录不能点击
+        //if(info.node.props.eventKey != -1){
+        //    this.setState({selectedKeys:nodes });
+        //}
+        this.setState({selectedKeys:nodes });
         this.rebuildTable(nodes);
         this.locals.selectedMenuNode = nodes;
     },
@@ -305,11 +317,14 @@ var UrlManager=React.createClass({
         // });
     },
     onDrop(info) {
-        console.log(info.dropToGap);
-        console.log(info);
         const dropKey = info.node.props.eventKey;
         const dragKey = info.dragNode.props.eventKey;
         
+        if(dropKey == "-1" && info.dropToGap){
+            //不能拖到根节点之外
+            message.warning("不能拖到根节点之外");
+            return;
+        }
         
         
         // const dragNodesKeys = info.dragNodesKeys;
@@ -444,6 +459,17 @@ var UrlManager=React.createClass({
 
     },
 
+    query(){
+
+        if(this.locals.params.createDate.length == 0){
+            this.locals.params.createDate = "";
+        }
+        if(this.locals.params.updateDate.length == 0){
+            this.locals.params.updateDate = "";
+        }
+        this.doList();
+    },
+
     render(){
 
 
@@ -516,16 +542,9 @@ var UrlManager=React.createClass({
                     </Col>
                     <Col span={20}>
                         <Command>
-                            <Button type="primary" onClick={this.deleteBatchAction.bind(this)} >删除全部选中</Button>
+                            <Button type="primary" onClick={this.deleteBatchAction} >删除全部选中</Button>
                         </Command>
-                        <Query>
-                            <Input labelName="名称:" name="id" placeholder="名称"/>
-                            <Input labelName="URL:" name="url" placeholder="URL" />
-                            <Input labelName="配置:" name="config" placeholder="配置" />
-                            <Input labelName="权限组:" name="groupId" placeholder="权限组"/>
-                            <Input labelName="其他:" name="other" placeholder="其他" />
-                            <Input labelName="状态:" name="status"  placeholder="状态" />
-                        </Query>
+                        <br/><br/>
                         <MyTable {...getTableData(this.state.table.data)}/>
                     </Col>
             </Row>
@@ -588,5 +607,16 @@ var UrlManager=React.createClass({
 });
 
 //UrlManager = createForm()(UrlManager);
+//
+//<Query onSubmit= {formData =>{this.locals.params = formData;this.query()}}>
+//    <Input labelName="名称:" name="id" placeholder="名称"/>
+//    <Input labelName="URL:" name="url" placeholder="URL" />
+//    <Input labelName="配置:" name="config" placeholder="配置" />
+//    <Input labelName="权限组:" name="groupId" placeholder="权限组"/>
+//    <Input labelName="其他:" name="other" placeholder="其他" />
+//    <Input labelName="状态:" name="status"  placeholder="状态" />
+//</Query>
 
-ReactDOM.render(<UrlManager />, document.getElementById("page-wrapper"));
+//ReactDOM.render(<UrlManager />, document.getElementById("page-wrapper"));
+//
+Tools.tempVar("UrlManager",UrlManager);
