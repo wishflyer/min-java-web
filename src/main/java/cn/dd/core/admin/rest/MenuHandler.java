@@ -23,13 +23,17 @@ public class MenuHandler {
     @Resource
     private MenuService menuService;
 
-    @RequestMapping("/getMenuJSON")
-    public String getMenuJSON() {
-        return menuService.getMenuJSON();
+    @RequestMapping(value = "/getMenuJSON", method = RequestMethod.POST)
+    public String getMenuJSON(@RequestBody String jsonStr) throws IOException {
+        //System.out.println("/getMenuJSON");
+        //System.out.println(jsonStr);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap = JsonUtils.parseMap(jsonStr);
+        return menuService.getMenuJSON(paramMap);
     }
 
 
-    @RequestMapping("/getRouterConfig")
+    @RequestMapping(value = "/getRouterConfig")
     public String getRouterConfig() throws IOException {
         String routerConfig = menuService.getRouterConfig();
         //String json =  JsonUtils.toJson(routerConfig);
@@ -44,15 +48,17 @@ public class MenuHandler {
 //        return menuConfig;
 //    }
 
-    @RequestMapping("/getMenuMap")
-    public String getMenuMap() {
-        Map<String, Menu> menuMap = menuService.getMenuMap();
+    @RequestMapping(value = "/getMenuMap", method = RequestMethod.POST)
+    public String getMenuMap(@RequestBody String jsonStr) throws IOException {
+        //System.out.println("/getMenuMap");
+        //System.out.println(jsonStr);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap = JsonUtils.parseMap(jsonStr);
+        Map<String, Menu> menuMap = menuService.getMenuMap(paramMap);
+
         String jsonMap = null;
-        try {
-            jsonMap = JsonUtils.toJson(menuMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        jsonMap = JsonUtils.toJson(menuMap);
+
         return jsonMap;
     }
 

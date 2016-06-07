@@ -19,14 +19,14 @@ var Base = React.createClass({
 		// 		{url:"www.2.com",name:"目录2",children:[{url:"www.baidu.com",name:"子目录1",children:[]}]},
 		// 		{url:"/urlManager2",name:"目录3",children:[]},
 		var self = this;
-		window.dd = window.dd || {}
 		//菜单未定义
 		if(!window.dd.MenuConfig){
 			console.log(">>getMenuConfig>>");
 			$.ajax({
 				url:"./menu/getMenuJSON",
-				method:"GET",
-				contentType:"application/json",
+				method:"POST",
+        		data: JSON.stringify({"groupId":"1"}),
+        		contentType:"application/json",
 				dataType: 'json',
 				success: function(data){
 					if(data.children){

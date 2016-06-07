@@ -14,13 +14,13 @@ public interface MenuService {
      * 获得Menu的JSON对象
      * @return Menu的JSON对象
      */
-    String getMenuJSON();
+    String getMenuJSON(Map paramMap);
 
     /**
      * 获得Menu的Map对象
      * @return Menu的Map对象
      */
-    Map<String,Menu> getMenuMap();
+    Map<String,Menu> getMenuMap(Map paramMap);
 
     /**
      * 获得RouterConfig对象

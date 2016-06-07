@@ -25,9 +25,10 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDao menuDao;
 
     @Override
-    public String getMenuJSON() {
+    public String getMenuJSON(Map paramMap) {
         //获得List<Menu>
         Menu condition = new Menu();
+        condition.setGroupId((String)paramMap.get("groupId"));
         List<Menu> menulist = menuDao.getByParam(condition);
         //获得Tree
         MenuUtils menuUtils = new MenuUtils();
@@ -45,9 +46,10 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Map<String, Menu> getMenuMap()  {
+    public Map<String, Menu> getMenuMap(Map paramMap)  {
         //获得List<Menu>
         Menu condition = new Menu();
+        condition.setGroupId((String)paramMap.get("groupId"));
         List<Menu> menulist = menuDao.getByParam(condition);
         //转换为Map
         Map<String,Menu> menuMap = new HashMap<String, Menu>();
