@@ -19,11 +19,6 @@ public class DemoService {
         return modelAndView;
     }
 
-    @RequestMapping("/index")
-    public String index(){
-        System.out.println("index()...");
-        return "index";
-    }
 
 
     @RequestMapping("/header_v3")

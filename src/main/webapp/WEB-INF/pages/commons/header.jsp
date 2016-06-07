@@ -3,7 +3,7 @@
     <div class="header">
         <div class="container">
             <!-- Logo -->
-            <a class="logo" href="index.html">
+            <a class="logo" href="./index">
                 <img src="<%=basePath%>static/image/logo/logo.png" alt="Logo">
             </a>
             <!-- End Logo -->
@@ -113,7 +113,7 @@
                             时装周
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog_masonry_3col.html">国际时装周</a></li>
+                            <li><a href="./fashion">国际时装周</a></li>
                         </ul>
                     </li>
                     <!-- End Blog -->
@@ -144,16 +144,16 @@
                             关于我们
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog_masonry_3col.html">品牌介绍</a></li>
-                            <li><a href="blog_masonry_3col.html">集团介绍</a></li>
-                            <li><a href="blog_masonry_3col.html">生产线</a></li>
-                            <li><a href="blog_masonry_3col.html">名瑞蕾丝</a></li>
-                            <li><a href="blog_masonry_3col.html">精湛潮秀</a></li>
-                            <li><a href="blog_masonry_3col.html">商务洽谈</a></li>
-                            <li><a href="blog_masonry_3col.html">质量证书</a></li>
-                            <li><a href="blog_masonry_3col.html">郑重声明</a></li>
-                            <li><a href="blog_masonry_3col.html">集团招聘</a></li>
-                            <li><a href="blog_masonry_3col.html">加盟条件</a></li>
+                            <li><a href="./about">品牌介绍</a></li>
+                            <li><a href="./about">集团介绍</a></li>
+                            <li><a href="./about">生产线</a></li>
+                            <li><a href="./about">名瑞蕾丝</a></li>
+                            <li><a href="./about">精湛潮秀</a></li>
+                            <li><a href="./about">商务洽谈</a></li>
+                            <li><a href="./about">质量证书</a></li>
+                            <li><a href="./about">郑重声明</a></li>
+                            <li><a href="./about">集团招聘</a></li>
+                            <li><a href="./about">加盟条件</a></li>
                         </ul>
                     </li>
                     <!-- End about us -->

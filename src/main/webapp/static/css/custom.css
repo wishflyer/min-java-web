@@ -9,3 +9,8 @@
     display: inline-block;
     border-bottom: solid 0px #aaa;
 }
+
+.footer-v1 .footer {
+    padding: 20px 0;
+    background: #272727;
+}

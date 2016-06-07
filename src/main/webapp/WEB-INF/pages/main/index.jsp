@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <%@include file="/WEB-INF/pages/commons/link.jsp"%>
+    <%@include file="../commons/link.jsp"%>
 
 </head>
 
@@ -24,15 +24,15 @@
 
 <div class="wrapper">
 
-    <%@include file="WEB-INF/pages/commons/header.jsp"%>
+    <%@include file="../commons/header.jsp"%>
 
-    <%@include file="WEB-INF/pages/base/main.jsp"%>
+    <%@include file="../base/main.jsp"%>
 
-    <%@include file="WEB-INF/pages/commons/footer.jsp"%>
+    <%@include file="../commons/footer.jsp"%>
 
 </div><!--/wrapper-->
 
-<%@include file="/WEB-INF/pages/commons/script.jsp"%>
+<%@include file="../commons/script.jsp"%>
 
 
 
