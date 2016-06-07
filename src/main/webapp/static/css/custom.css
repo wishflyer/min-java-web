@@ -1,0 +1,11 @@
+.header .nav > li > .search {
+    color: #aaa;
+    cursor: pointer;
+    min-width: 35px;
+    font-size: 15px;
+    text-align: center;
+     background: #FFFFFF; 
+    padding: 11px 0 12px;
+    display: inline-block;
+    border-bottom: solid 0px #aaa;
+}

@@ -8,7 +8,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <title>Header v3 | Unify - Responsive Website Template</title>
+    <title>famory</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -24,7 +24,11 @@
 
 <div class="wrapper">
 
-    <%@include file="WEB-INF/pages/header/header_v3.jsp"%>
+    <%@include file="WEB-INF/pages/commons/header.jsp"%>
+
+    <%@include file="WEB-INF/pages/main/main.jsp"%>
+
+    <%@include file="WEB-INF/pages/commons/footer.jsp"%>
 
 </div><!--/wrapper-->
 

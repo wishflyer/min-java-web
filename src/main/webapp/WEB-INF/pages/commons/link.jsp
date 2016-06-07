@@ -11,17 +11,22 @@
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/style.css">
 
     <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/headers/header-v3.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/headers/header-default.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/footers/footer-v1.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/animate.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/line-icons/line-icons.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/parallax-slider/css/parallax-slider.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/master-slider/masterslider/style/masterslider.css">
 
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/theme-colors/red.css" id="style_color">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/theme-skins/dark.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/custom.css">
+    <link rel="stylesheet" href="<%=basePath%>static/css/custom.css">
