@@ -43,12 +43,12 @@
                             名瑞婚纱
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="index.html">新款上市</a></li>
-                            <li><a href="page_home8.html">Grace</a></li>
-                            <li><a href="page_home8.html">Sensuous</a></li>
-                            <li><a href="page_home8.html">Rosa</a></li>
-                            <li><a href="page_home8.html">Refined</a></li>
-                            <li><a href="page_home8.html">Plus Size Bride</a></li>
+                            <li><a href="./portfolio">新款上市</a></li>
+                            <li><a href="./portfolio">Grace</a></li>
+                            <li><a href="./portfolio">Sensuous</a></li>
+                            <li><a href="./portfolio">Rosa</a></li>
+                            <li><a href="./portfolio">Refined</a></li>
+                            <li><a href="./portfolio">Plus Size Bride</a></li>
                         </ul>
                     </li>
                     <!-- End Home -->
@@ -61,10 +61,10 @@
                         <ul class="dropdown-menu">
 
                             <!-- Invoice Page -->
-                            <li><a href="page_invoice.html">新款上市</a></li>
-                            <li><a href="page_invoice.html">Gorgeous</a></li>
-                            <li><a href="page_invoice.html">Brilliant</a></li>
-                            <li><a href="page_invoice.html">Bridesmaid</a></li>
+                            <li><a href="./portfolio2">新款上市</a></li>
+                            <li><a href="./portfolio2">Gorgeous</a></li>
+                            <li><a href="./portfolio2">Brilliant</a></li>
+                            <li><a href="./portfolio2">Bridesmaid</a></li>
                             <!-- End Invoice Page -->
 
                         </ul>
@@ -77,8 +77,8 @@
                             网上商城
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog_masonry_3col.html">淘宝官方店</a></li>
-                            <li><a href="blog_timeline.html">京东官方店</a></li>
+                            <li><a target="_blank" href="//famory.taobao.com/">淘宝官方店</a></li>
+                            <li><a target="_blank" href="//famory.taobao.com/">京东官方店</a></li>
                         </ul>
                     </li>
                     <!-- End Blog -->
@@ -90,7 +90,7 @@
                             体验店
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog_masonry_3col.html">名瑞婚纱晚礼服旗舰店</a></li>
+                            <li><a href="./map">名瑞婚纱晚礼服旗舰店</a></li>
                         </ul>
                     </li>
                     <!-- End Blog -->
@@ -101,8 +101,8 @@
                             名瑞杯
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog_masonry_3col.html">名瑞杯婚纱设计大赛</a></li>
-                            <li><a href="blog_timeline.html">名瑞杯晚礼服设计大赛</a></li>
+                            <li><a href="./match">名瑞杯婚纱设计大赛</a></li>
+                            <li><a href="./match">名瑞杯晚礼服设计大赛</a></li>
                         </ul>
                     </li>
                     <!-- End Blog -->
@@ -125,14 +125,14 @@
                             品牌风采
                         </a>
                         <ul class="dropdown-menu">
-                        <li><a href="blog_masonry_3col.html">技术交流</a></li>
-                        <li><a href="blog_masonry_3col.html">信息交流</a></li>
-                        <li><a href="blog_masonry_3col.html">高端对话</a></li>
-                        <li><a href="blog_masonry_3col.html">国际时装周</a></li>
-                        <li><a href="blog_masonry_3col.html">名瑞集团&清华大学</a></li>
-                        <li><a href="blog_masonry_3col.html">媒体聚焦</a></li>
-                        <li><a href="blog_masonry_3col.html">重要启事</a></li>
-                        <li><a href="blog_masonry_3col.html">品牌宣传片</a></li>
+                        <li><a href="./style">技术交流</a></li>
+                        <li><a href="./style">信息交流</a></li>
+                        <li><a href="./style">高端对话</a></li>
+                        <li><a href="./style">国际时装周</a></li>
+                        <li><a href="./style">名瑞集团&清华大学</a></li>
+                        <li><a href="./style">媒体聚焦</a></li>
+                        <li><a href="./style">重要启事</a></li>
+                        <li><a href="./style">品牌宣传片</a></li>
 
                         </ul>
                     </li>
@@ -166,7 +166,7 @@
                             <div class="input-group animated fadeInDown">
                                 <input type="text" class="form-control" placeholder="搜索产品">
 									<span class="input-group-btn">
-										<button class="btn-u" type="button">Go</button>
+										<a href="./search" class="btn-u" >Go</a>
 									</span>
                             </div>
                         </div>

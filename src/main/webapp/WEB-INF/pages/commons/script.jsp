@@ -28,6 +28,8 @@
 <script type="text/javascript" src="<%=basePath%>static/unify/assets/js/plugins/master-slider-fw.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/unify/assets/js/plugins/cube-portfolio/cube-portfolio-3.js"></script>
 
+<script type="text/javascript" src="<%=basePath%>static/unify/assets/js/plugins/owl-recent-works.js"></script>
+
 
 <script type="text/javascript">
 
@@ -64,22 +66,15 @@
     	});
 	}
 
-
-
-
-
     jQuery(document).ready(function() {
         App.init();
 		ParallaxSlider.initParallaxSlider();
 		MSfullWidth.initMSfullWidth();
+		OwlRecentWorks.initOwlRecentWorksV1();
     });
 </script>
 <!--[if lt IE 9]>
 <script src="<%=basePath%>static/unify/assets/plugins/respond.js"></script>
 <script src="<%=basePath%>static/unify/assets/plugins/html5shiv.js"></script>
-<script src="<%=basePath%>slayer.open({
-        type: 1,
-        area: ['600px', '360px'],
-        shadeClose: true, //点击遮罩关闭
-        content: '\<\div style="padding:20px;">自定义内容\<\/div>'
-    });
+<script src="<%=basePath%>static/unify/assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->

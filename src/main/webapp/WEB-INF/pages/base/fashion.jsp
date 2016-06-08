@@ -93,7 +93,7 @@
 					<div class="news-v1-in">
 					<!-- 	<img class="img-responsive" src="<%=basePath%>static/image/upload/main_v1.jpg" alt=""> -->
 					<div class="responsive-video md-margin-bottom-40" style="padding-bottom: 67%;">
-								<iframe width="100%" src="//www.youtube.com/embed/4dmt7tQG1-w" frameborder="0" allowfullscreen=""></iframe>
+								<iframe width="100%" src="http://player.youku.com/embed/XMzE1MjU4Njg=" frameborder=0 allowfullscreen></iframe>
 							</div>
 						<h3><a href="#" onclick="openContent()">蔡中涵2015婚纱礼服新品发布会</a></h3>
 						<p>2015年10月26日，18：00，梅赛德斯-奔驰中国国际时装周，名瑞·蔡中涵2015春夏婚纱礼服新品发布会，在“北京751中央大厅”正式发布。</p>

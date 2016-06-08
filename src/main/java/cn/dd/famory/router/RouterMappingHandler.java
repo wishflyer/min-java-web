@@ -27,6 +27,43 @@ public class RouterMappingHandler {
         return "main/content";
     }
 
+
+    @RequestMapping("/portfolio")
+    public String gotoPortfolioPage(){
+        return "main/portfolio";
+    }
+
+
+    @RequestMapping("/portfolio2")
+    public String gotoPortfolioPage2(){
+        return "main/portfolio2";
+    }
+
+
+    @RequestMapping("/style")
+    public String gotoStylePage(){
+        return "main/style";
+    }
+
+
+    @RequestMapping("/match")
+    public String gotoMatchPage(){
+        return "main/match";
+    }
+
+
+    @RequestMapping("/map")
+    public String gotoMapPage(){
+        return "main/map";
+    }
+
+
+    @RequestMapping("/search")
+    public String gotoSearchPage(){
+        return "main/search";
+    }
+
+
     @RequestMapping("/about")
     public String gotoAboutPage(){
         return "main/about";

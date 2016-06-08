@@ -18,19 +18,19 @@
                             <div class="headline"><h2>关于名瑞</h2></div>
                             <ul class="list-unstyled link-list">
                                 <li>
-                                    <a href="#">品牌介绍</a><i class="fa fa-angle-right"></i>
+                                    <a href="./about">品牌介绍</a><i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a href="#">集团介绍</a><i class="fa fa-angle-right"></i>
+                                    <a href="./about">集团介绍</a><i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a href="#">名瑞蕾丝</a><i class="fa fa-angle-right"></i>
+                                    <a href="./about">名瑞蕾丝</a><i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a href="#">精湛潮秀</a><i class="fa fa-angle-right"></i>
+                                    <a href="./about">精湛潮秀</a><i class="fa fa-angle-right"></i>
                                 </li>
                                 <li>
-                                    <a href="#">质量证书</a><i class="fa fa-angle-right"></i>
+                                    <a href="./about">质量证书</a><i class="fa fa-angle-right"></i>
                                 </li>
                             </ul>
                         </div>
@@ -41,11 +41,11 @@
                     <div class="col-md-3 md-margin-bottom-20">
                         <div class="headline"><h2>相关链接</h2></div>
                         <ul class="list-unstyled link-list">
-                            <li><a href="#">关于我们</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">商务洽谈</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">集团招聘</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">加盟条件</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">留言联系</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="./about">关于我们</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="./about">商务洽谈</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="./about">集团招聘</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="./about">加盟条件</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="./about">郑重声明</a><i class="fa fa-angle-right"></i></li>
                         </ul>
                     </div><!--/col-md-3-->
                     <!-- End Link List -->
