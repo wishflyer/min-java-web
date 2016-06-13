@@ -175,6 +175,14 @@
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
-    </div>
+</div>
     <!--=== End Header ===-->
 
+
+     <%@include file="../commons/mobileHeader.jsp"%>
+
+
+ <!--[if lt IE 8]>
+ 123123
+<p class="browserupgrade">您的浏览器实在是 <strong>太古董啦~~~</strong> . 现代人要使用现代浏览器， <a href="http://browsehappy.com/">点击这里</a> 升级您的浏览器吧！ </p>
+<![endif]-->

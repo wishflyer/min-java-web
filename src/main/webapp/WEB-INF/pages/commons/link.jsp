@@ -12,6 +12,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="<%=basePath%>static/css/header/header-dd-v1.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/footers/footer-v1.css">
 
     <!-- CSS Implementing Plugins -->
@@ -23,6 +24,9 @@
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/master-slider/masterslider/style/masterslider.css">
+    <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/sliding-panel/style.css">
+
+<!--     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/plugins/brand-buttons/brand-buttons.css"> -->
 
     <!-- CSS Theme -->
     <link rel="stylesheet" href="<%=basePath%>static/unify/assets/css/theme-colors/red.css" id="style_color">
@@ -30,3 +34,7 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<%=basePath%>static/css/custom.css">
+
+
+
+    <link rel="stylesheet" href="<%=basePath%>static/plugins/sliding-panel/style.css">

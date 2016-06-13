@@ -30,6 +30,10 @@
 
 <script type="text/javascript" src="<%=basePath%>static/unify/assets/js/plugins/owl-recent-works.js"></script>
 
+<!--My Customization -->
+
+<script type="text/javascript" src="<%=basePath%>static/plugins/sliding-panel/jquery.sliding-panel.js"></script>
+
 
 <script type="text/javascript">
 
@@ -78,3 +82,11 @@
 <script src="<%=basePath%>static/unify/assets/plugins/html5shiv.js"></script>
 <script src="<%=basePath%>static/unify/assets/plugins/placeholder-IE-fixes.js"></script>
 <![endif]-->
+
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-78504282-1','auto');ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>

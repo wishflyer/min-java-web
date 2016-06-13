@@ -16,6 +16,23 @@ public class RouterMappingHandler {
     }
 
 
+    @RequestMapping("/index2")
+    public String index2(){
+        return "main/index2";
+    }
+
+    @RequestMapping("/index3")
+    public String index3(){
+        return "main/index3";
+    }
+
+
+    @RequestMapping("/index4")
+    public String index4(){
+        return "main/index4";
+    }
+
+
     @RequestMapping("/fashion")
     public String gotoFashionPage(){
         return "main/fashion";
