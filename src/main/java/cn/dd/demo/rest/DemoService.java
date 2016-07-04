@@ -20,14 +20,11 @@ public class DemoService {
     }
 
 
-
     @RequestMapping("/header_v3")
     public String header_v3(){
         System.out.println("header_v3()...");
         return "header/header_v3";
     }
-
-
 
 
     @RequestMapping("/test")

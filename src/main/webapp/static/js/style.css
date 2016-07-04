@@ -1,3 +1,8 @@
+/*URL表格的URL字段做最大长度限制*/
+.urlTable th,.urlTable td{
+    max-width: 300px;
+}
+
 
 
 .page-loading {

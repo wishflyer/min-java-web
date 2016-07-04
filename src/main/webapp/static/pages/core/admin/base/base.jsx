@@ -29,6 +29,7 @@ var Base = React.createClass({
 				contentType:"application/json",
 				dataType: 'json',
 				success: function(data){
+					console.log(data.children);
 					if(data.children){
 						self.setState({sidebarList:data.children});
 						window.dd.MenuConfig = data.children;

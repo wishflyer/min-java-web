@@ -92,14 +92,19 @@ var UrlManager=React.createClass({
     reloadData(){
         var self = this;
         Ajax.post("./menu/getMenuJSON", {groupId:this.props.menuGroupId}, treeJson => {
-            this.setState({
+            console.log(self.isMounted());
+            console.log(self);
+            if(self.isMounted()){
+                self.setState({
                 gData:[treeJson], 
                 selectedKeys:[],
-            });
-            Ajax.post("./menu/getMenuMap", {groupId:this.props.menuGroupId}, menuMap => {
-                self.locals.menuMap = menuMap;
-                self.rebuildTable(this.locals.selectedMenuNode);
-            });
+                });
+                Ajax.post("./menu/getMenuMap", {groupId:self.props.menuGroupId}, menuMap => {
+                    self.locals.menuMap = menuMap;
+                    self.rebuildTable(self.locals.selectedMenuNode);
+                });
+            }
+            
         });
     },
     addChildNodeAction(e){
@@ -545,7 +550,9 @@ var UrlManager=React.createClass({
                             <Button type="primary" onClick={this.deleteBatchAction} >删除全部选中</Button>
                         </Command>
                         <br/><br/>
-                        <MyTable {...getTableData(this.state.table.data)}/>
+                        <div className="urlTable">
+                            <MyTable {...getTableData(this.state.table.data)}/>
+                        </div>
                     </Col>
             </Row>
             <Modal title="新增菜单" visible={this.state.showCreateModalState} footer={null} onCancel={this.hideAddModal}>

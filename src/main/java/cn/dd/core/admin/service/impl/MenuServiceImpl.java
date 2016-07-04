@@ -85,11 +85,12 @@ public class MenuServiceImpl implements MenuService {
         while(iterator.hasNext()){
             Menu menu = iterator.next();
             if(!menu.getConfig().equals("")){
-                routerConfig.append(menu.getConfig()).append(",");
+                routerConfig.append("\""+menu.getId()+"&\"+"+menu.getConfig()).append(",");
             }
         }
         routerConfig.append("}");
-        return routerConfig.toString();
+        //System.out.println(routerConfig.toString().replaceAll("&\"\\+\"","&"));
+        return routerConfig.toString().replaceAll("&\"\\+\"","&");
     }
 
     @Override

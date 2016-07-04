@@ -14,10 +14,11 @@ const loadPage = (func) =>{
 			contentType:"application/text",
 			dataType: 'text',
 			success: function(data){
+				//alert('success');
 				//console.log(data);
 				//	window.dd.RouteConfig =	(new Function('return ' + data))();
 				window.dd.RouteConfig = eval('('+ data +')');
-				//console.log(window.dd.RouteConfig);
+				console.log(window.dd.RouteConfig);
 				func();
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
